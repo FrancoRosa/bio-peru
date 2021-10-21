@@ -25,6 +25,13 @@ export const getDevices = async () => {
   return response.data;
 };
 
+export const getDeviceTypes = async () => {
+  console.log("... retrieving devices");
+  const url = host + "/device_types.json";
+  const response = await axios.get(url);
+  return response.data;
+};
+
 export const getAreas = async () => {
   console.log("... retrieving areas");
   const url = host + "/areas.json";
@@ -35,6 +42,13 @@ export const getAreas = async () => {
 export const getCriticalLevels = async () => {
   console.log("... retrieving critical levels");
   const url = host + "/critical_levels.json";
+  const response = await axios.get(url);
+  return response.data;
+};
+
+export const getMaintainers = async () => {
+  console.log("... retrieving maintainers");
+  const url = host + "/maintainers.json";
   const response = await axios.get(url);
   return response.data;
 };

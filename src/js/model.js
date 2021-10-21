@@ -1,17 +1,38 @@
 import { action } from "easy-peasy";
 
-const defaults = {
-  wifissid: "wifi_name",
-  wifipass: "wifi_password",
-};
-
-const getSavedStorage = (key) => {
-  return JSON.parse(window.localStorage.getItem(key)) || defaults[key];
-};
-
 export default {
-  rooms: [],
-  setRooms: action((state, rooms) => {
-    state.rooms = [...rooms];
+  areas: [],
+  setAreas: action((state, areas) => {
+    state.areas = [...areas];
+  }),
+
+  criticalLevels: [],
+  setCriticalLevels: action((state, criticalLevels) => {
+    state.criticalLevels = [...criticalLevels];
+  }),
+
+  deviceTypes: [],
+  setDeviceTypes: action((state, deviceTypes) => {
+    state.deviceTypes = [...deviceTypes];
+  }),
+
+  devices: [],
+  setDevices: action((state, devices) => {
+    state.devices = [...devices];
+  }),
+
+  facilities: [],
+  setFacilities: action((state, facilities) => {
+    state.facilities = [...facilities];
+  }),
+
+  maintainers: [],
+  setMaintainers: action((state, maintainers) => {
+    state.maintainers = [...maintainers];
+  }),
+
+  maintenances: [],
+  setMaintenances: action((state, maintenances) => {
+    state.maintenances = [...maintenances];
   }),
 };
