@@ -8,6 +8,7 @@ import {
   getDeviceTypes,
   getFacilities,
   getMaintainers,
+  getMaintenances,
 } from "../js/api";
 
 const Navigator = () => {
@@ -19,6 +20,7 @@ const Navigator = () => {
   const setDevices = useStoreActions((actions) => actions.setDevices);
   const setFacilities = useStoreActions((actions) => actions.setFacilities);
   const setMaintainers = useStoreActions((actions) => actions.setMaintainers);
+  const setMaintenances = useStoreActions((actions) => actions.setMaintenances);
 
   useEffect(() => {
     getAreas().then((res) => setAreas(res));
@@ -29,6 +31,7 @@ const Navigator = () => {
     });
     getFacilities().then((res) => setFacilities(res));
     getMaintainers().then((res) => setMaintainers(res));
+    getMaintenances().then((res) => setMaintenances(res));
   }, []);
 
   return (

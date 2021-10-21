@@ -52,3 +52,10 @@ export const getMaintainers = async () => {
   const response = await axios.get(url);
   return response.data;
 };
+
+export const getMaintenances = async () => {
+  console.log("... retrieving maintenances");
+  const url = host + `/maintenances.json`;
+  const response = await axios.get(url);
+  return response.data;
+};

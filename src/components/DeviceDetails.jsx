@@ -1,6 +1,7 @@
 import { useStoreState } from "easy-peasy";
 import { useParams } from "react-router";
 import { getNameById, getParentName } from "../js/helpers";
+import MaintenanceList from "./MaintenanceList";
 
 const DeviceDetails = () => {
   let { device_id } = useParams();
@@ -8,11 +9,11 @@ const DeviceDetails = () => {
   const device = devices.find((x) => x.id == device_id);
 
   const areas = useStoreState((state) => state.areas);
-  const criticalLevels = useStoreState((state) => state.criticalLevels);
   const facilities = useStoreState((state) => state.facilities);
+  const criticalLevels = useStoreState((state) => state.criticalLevels);
+  const deviceTypes = useStoreState((state) => state.deviceTypes);
 
   const {
-    id,
     name,
     brand,
     model,
@@ -24,6 +25,7 @@ const DeviceDetails = () => {
     last_maintenance,
     next,
   } = device;
+
   return (
     <div className="column">
       <h1 className="title is-3 mt-4">Detalles de equipo</h1>
@@ -54,12 +56,20 @@ const DeviceDetails = () => {
                 <td>{name}</td>
               </tr>
               <tr>
-                <td>Modelo :</td>
+                <td>Marca :</td>
                 <td>{brand}</td>
+              </tr>
+              <tr>
+                <td>Modelo :</td>
+                <td>{model}</td>
               </tr>
               <tr>
                 <td>Serial :</td>
                 <td>{serial}</td>
+              </tr>
+              <tr className="help">
+                <td>Tipo :</td>
+                <td>{getNameById(deviceTypes, device_type_id)}</td>
               </tr>
             </tbody>
           </table>
@@ -79,6 +89,8 @@ const DeviceDetails = () => {
           </table>
         </div>
       </div>
+      <h1 className="title is-3 mt-4">Ultimos mantenimientos</h1>
+      <MaintenanceList device={device} />
     </div>
   );
 };
