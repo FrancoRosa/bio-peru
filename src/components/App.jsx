@@ -6,6 +6,7 @@ import Home from "./Home";
 import Navigator from "./Navigator";
 import model from "../js/model";
 import DeviceDetails from "./DeviceDetails";
+import PrintFormat from "./PrintFormat";
 
 const store = createStore(model);
 
@@ -24,6 +25,7 @@ const App = () => {
               path="/device_details/:device_id"
               component={DeviceDetails}
             />
+            <Route path="/print_format/:device_id" component={PrintFormat} />
           </Switch>
         </StoreProvider>
       </div>

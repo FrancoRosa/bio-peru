@@ -1,10 +1,11 @@
 import { useStoreState } from "easy-peasy";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import { getNameById, getParentName } from "../js/helpers";
 import MaintenanceList from "./MaintenanceList";
 
 const DeviceDetails = () => {
-  let { device_id } = useParams();
+  const { device_id } = useParams();
+  const history = useHistory();
   const devices = useStoreState((state) => state.devices);
   const device = devices.find((x) => x.id == device_id);
 
@@ -28,7 +29,7 @@ const DeviceDetails = () => {
 
   return (
     <div className="column">
-      <h1 className="title is-3 mt-4">Detalles de equipo</h1>
+      <h1 className="title is-3 mt-4">Detalles del equipo</h1>
       <div className="columns">
         <div className="column">
           <table className="table">
@@ -78,15 +79,29 @@ const DeviceDetails = () => {
           <table className={`table has-background-${status}-light`}>
             <tbody>
               <tr>
-                <td>Ultimo Mantenimiento :</td>
+                <td>Último Mantenimiento :</td>
                 <td>{last_maintenance}</td>
               </tr>
               <tr>
-                <td>Proximo Mantenimiento :</td>
+                <td>Próximo Mantenimiento :</td>
                 <td>{next}</td>
               </tr>
             </tbody>
           </table>
+          <div className="is-flex is-flex-direction-column mr-4">
+            <button
+              className="button is-outlined mt-4 mr-4"
+              onClick={() => history.push(`/print_format/${device_id}`)}
+            >
+              Generar Formato
+            </button>
+            <button
+              className="button is-outlined mt-4 mr-4"
+              onClick={() => history.push(`/save_format/${device_id}`)}
+            >
+              Guardar Formato
+            </button>
+          </div>
         </div>
       </div>
       <h1 className="title is-3 mt-4">Ultimos mantenimientos</h1>
