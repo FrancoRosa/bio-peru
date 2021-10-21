@@ -1,6 +1,5 @@
 import { useStoreActions, useStoreState } from "easy-peasy";
 import { useEffect, useState } from "react";
-import { useHistory } from "react-router";
 import {
   getNameById,
   getParentName,
@@ -8,9 +7,7 @@ import {
   getNextMaintenance,
   deviceToString,
 } from "../js/helpers";
-
-const NextMaintenances = () => {
-  const history = useHistory();
+const NewReport = () => {
   const areas = useStoreState((state) => state.areas);
   const criticalLevels = useStoreState((state) => state.criticalLevels);
   const devices = useStoreState((state) => state.devices);
@@ -82,15 +79,10 @@ const NextMaintenances = () => {
     }
   }, [criticalLevels]);
 
-  const handleClick = (device) => {
-    history.push(`/device_details/${device.id}`);
-    console.log(device);
-  };
-
   return (
     <div className="column">
-      <h1 className="title is-3 mt-4">Equipos Medicos</h1>
-      <div className="columns m-4">
+      <h1 className="title is-3 mt-4">Nuevo Reporte</h1>
+      <div className="columns mt-4 mr-4">
         <div className="column">
           <div className="field">
             <label className="label">Ubicación</label>
@@ -146,7 +138,7 @@ const NextMaintenances = () => {
         </div>
       </div>
 
-      <table className="table is-narrow is-hoverable is-fullwidth">
+      <table className="table is-narrow is-hoverable">
         <thead>
           <tr>
             <th>Nro</th>
@@ -163,11 +155,7 @@ const NextMaintenances = () => {
         </thead>
         <tbody>
           {filteredDevices.map((d, i) => (
-            <tr
-              key={d.id}
-              className={"has-background-" + d.status + "-light pointer"}
-              onClick={() => handleClick(d)}
-            >
+            <tr key={d.id} className={"has-background-" + d.status + "-light"}>
               <td>{i}</td>
               <td>{getParentName(facilities, areas, d.area_id)}</td>
               <td>{getNameById(areas, d.area_id)}</td>
@@ -186,4 +174,4 @@ const NextMaintenances = () => {
   );
 };
 
-export default NextMaintenances;
+export default NewReport;

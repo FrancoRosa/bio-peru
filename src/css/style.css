@@ -269,3 +269,7 @@ body,
 .has-text-danger-dark {
   color: hsl(348, 86%, 43%);
 }
+
+.pointer {
+  cursor: pointer;
+}

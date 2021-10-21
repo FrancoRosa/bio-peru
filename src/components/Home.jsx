@@ -1,8 +1,7 @@
 const Home = () => {
   return (
-    <div>
-      <h1>Home</h1>
-      <p>Welcome window</p>
+    <div className="column">
+      <h1 className="title is-3 mt-4">Bienvenido</h1>
     </div>
   );
 };

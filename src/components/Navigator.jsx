@@ -22,9 +22,11 @@ const Navigator = () => {
 
   useEffect(() => {
     getAreas().then((res) => setAreas(res));
-    getCriticalLevels().then((res) => setCriticalLevels(res));
     getDeviceTypes().then((res) => setDeviceTypes(res));
-    getDevices().then((res) => setDevices(res));
+    getDevices().then((res) => {
+      setDevices(res);
+      getCriticalLevels().then((res) => setCriticalLevels(res));
+    });
     getFacilities().then((res) => setFacilities(res));
     getMaintainers().then((res) => setMaintainers(res));
   }, []);
@@ -37,10 +39,7 @@ const Navigator = () => {
           <Link to="/home">Inicio</Link>
         </li>
         <li>
-          <Link to="/report">Reportes</Link>
-        </li>
-        <li>
-          <Link to="/next_maintenances">Próximos Man.</Link>
+          <Link to="/next_maintenances">Equipos Medicos</Link>
         </li>
       </ul>
     </aside>
