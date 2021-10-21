@@ -240,3 +240,32 @@ body,
   max-height: 100vh;
   overflow: scroll;
 }
+
+.has-background-primary-light {
+  background-color: hsl(171, 100%, 96%);
+}
+.has-background-link-light {
+  background-color: hsl(219, 70%, 96%);
+}
+.has-background-info-light {
+  background-color: hsl(206, 70%, 96%);
+}
+.has-background-success-light {
+  background-color: hsl(142, 52%, 96%);
+}
+.has-background-warning-light {
+  background-color: hsl(48, 100%, 96%);
+}
+.has-background-danger-light {
+  background-color: hsl(347, 90%, 96%);
+}
+
+.has-text-success-dark {
+  color: hsl(141, 53%, 31%);
+}
+.has-text-warning-dark {
+  color: hsl(48, 100%, 29%);
+}
+.has-text-danger-dark {
+  color: hsl(348, 86%, 43%);
+}
