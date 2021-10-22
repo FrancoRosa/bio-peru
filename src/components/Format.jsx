@@ -1,66 +1,6 @@
-import { useStoreState } from "easy-peasy";
-import { useEffect } from "react";
-import { useParams } from "react-router";
-import { toDate } from "../js/helpers";
-
-const PrintFormat = () => {
-  const { device_id } = useParams();
-  const devices = useStoreState((state) => state.devices);
-  const device = devices.find((x) => x.id == device_id);
-  const deviceTypes = useStoreState((state) => state.deviceTypes);
-  const maintenances = useStoreState((state) => state.maintenances);
-  const deviceType = deviceTypes.find((x) => x.id == device.device_type_id);
-
-  const formatCode = () => {
-    const maintenancesCount = maintenances.filter(
-      (x) => x.device_id == device.id
-    ).length;
-    return (
-      String(device.id).padStart(4, "0") +
-      " - " +
-      String(maintenancesCount + 1).padStart(4, "0")
-    );
-  };
-
-  const getActions = () => {
-    const actions = deviceType.protocol.split("\n");
-    if (actions.length < 10) {
-      const actionsLeft = 10 - actions.length;
-      for (let index = 0; index < actionsLeft; index++) {
-        actions.push("");
-      }
-    }
-    actions.splice(10);
-    return actions;
-  };
-
-  useEffect(() => {
-    const download_button = document.querySelector("#btn_download");
-    download_button.addEventListener("click", () => {
-      const pdf_content = document.querySelector("#pdf_format");
-      html2pdf()
-        .set({
-          margin: [0.1, 0.1],
-          filename: "formato",
-          html2canvas: {
-            scale: 1,
-            letterRendering: true,
-          },
-          image: { type: "jpeg", quality: 1 },
-          jsPDF: {
-            unit: "in",
-            format: "a4",
-            orientation: "portrait",
-          },
-        })
-        .from(pdf_content)
-        .save()
-        .catch((err) => console.log(err));
-    });
-  }, []);
-
+const Format = () => {
   return (
-    <div className="mt-4">
+    <div>
       <style
         type="text/css"
         dangerouslySetInnerHTML={{
@@ -68,7 +8,8 @@ const PrintFormat = () => {
             '\n\t\tbody,div,table,thead,tbody,tfoot,tr,th,td,p { \n\t\t\tfont-family:"Calibri";\n\t\t\tfont-size:x-small;\n\t\t}\n\t\t.empty {\n\t\t\tline-height: 0.5;\n\t\t}\n\t\t.l1 {\n\t\t\tline-height: 1.5;\n\t\t}\n\n\t\ta.comment-indicator:hover + comment {\n\t\t\tbackground:#ffd;\n\t\t\tposition:absolute;\n\t\t\tdisplay:block;\n\t\t\tborder:1px solid black;\n\t\t\tpadding:0.5em;\n\t\t} \n\t\ta.comment-indicator { \n\t\t\tbackground:red;\n\t\t\tdisplay:inline-block;\n\t\t\tborder:1px solid black;\n\t\t\twidth:0.5em;\n\t\t\theight:0.5em;\n\t\t} \n\t\tcomment { display:none;  } \n\t',
         }}
       />
-      <table cellSpacing={0} border={0} id="pdf_format">
+      &lt;% @actions.each_with_index do |action, i| %&gt; &lt;% end %&gt;
+      <table cellSpacing={0} border={0}>
         <colgroup width={29} />
         <colgroup width={109} />
         <colgroup span={3} width={79} />
@@ -93,7 +34,7 @@ const PrintFormat = () => {
               valign="middle"
             >
               <b>
-                <font color="#000000"></font>
+                <font color="#000000">logo</font>
               </b>
             </td>
             <td colSpan={5} align="center" valign="bottom">
@@ -169,7 +110,7 @@ const PrintFormat = () => {
               valign="middle"
               sdnum="1033;0;M/D/YYYY"
             >
-              <font color="#000000">{formatCode()}</font>
+              <font color="#000000">&lt;%= @format_code %&gt;</font>
             </td>
           </tr>
           <tr>
@@ -224,7 +165,9 @@ const PrintFormat = () => {
               sdval={44363}
               sdnum="1033;0;M/D/YYYY"
             >
-              <font color="#000000">{toDate(Date.now())}</font>
+              <font color="#000000">
+                &lt;%= Time.now.strftime('%d/%m/%Y')%&gt;
+              </font>
             </td>
           </tr>
           <tr className="empty">
@@ -489,7 +432,7 @@ const PrintFormat = () => {
             </td>
             <td colSpan={3} height={18} align="left" valign="middle">
               <b>
-                <font color="#000000">{deviceType.name}</font>
+                <font color="#000000">&lt;%=@device_type.name%&gt;</font>
               </b>
             </td>
             <td align="left" valign="bottom">
@@ -531,7 +474,7 @@ const PrintFormat = () => {
             </td>
             <td colSpan={3} height={18} align="left" valign="middle">
               <b>
-                <font color="#000000">{device.name}</font>
+                <font color="#000000">&lt;%= @device.name %&gt;</font>
               </b>
             </td>
             <td align="left" valign="bottom">
@@ -573,7 +516,7 @@ const PrintFormat = () => {
             </td>
             <td colSpan={2} height={18} align="left" valign="bottom">
               <b>
-                <font color="#000000">{device.brand}</font>
+                <font color="#000000">&lt;%= @device.brand %&gt;</font>
               </b>
             </td>
             <td align="left" valign="bottom">
@@ -588,7 +531,7 @@ const PrintFormat = () => {
             </td>
             <td align="left" valign="bottom">
               <b>
-                <font color="#000000">{device.model}</font>
+                <font color="#000000">&lt;%= @device.model %&gt;</font>
               </b>
             </td>
             <td align="left" valign="bottom">
@@ -598,7 +541,7 @@ const PrintFormat = () => {
             </td>
             <td align="left" valign="bottom">
               <b>
-                <font color="#000000">{device.serial}</font>
+                <font color="#000000">&lt;%= @device.serial %&gt;</font>
               </b>
             </td>
             <td align="left" valign="bottom">
@@ -1188,40 +1131,36 @@ const PrintFormat = () => {
               <font color="#000000">Descripcion de la actividad ejecutada</font>
             </td>
           </tr>
-
-          {getActions().map((action, i) => (
-            <tr className="l1">
-              <td
-                style={{
-                  borderTop: "1px solid #000000",
-                  borderBottom: "1px solid #000000",
-                  borderLeft: "1px solid #000000",
-                  borderRight: "1px solid #000000",
-                  paddingLeft: "5px",
-                }}
-                colSpan={1}
-                align="left"
-                valign="bottom"
-              >
-                <font color="#000000">{i + 1}</font>
-              </td>
-              <td
-                style={{
-                  borderTop: "1px solid #000000",
-                  borderBottom: "1px solid #000000",
-                  borderLeft: "1px solid #000000",
-                  borderRight: "1px solid #000000",
-                  paddingLeft: "5px",
-                }}
-                colSpan={9}
-                align="left"
-                valign="bottom"
-              >
-                <font color="#000000">{action}</font>
-              </td>
-            </tr>
-          ))}
-
+          <tr className="l1">
+            <td
+              style={{
+                borderTop: "1px solid #000000",
+                borderBottom: "1px solid #000000",
+                borderLeft: "1px solid #000000",
+                borderRight: "1px solid #000000",
+                paddingLeft: "5px",
+              }}
+              colSpan={1}
+              align="left"
+              valign="bottom"
+            >
+              <font color="#000000">&lt;%= i +1 %&gt;</font>
+            </td>
+            <td
+              style={{
+                borderTop: "1px solid #000000",
+                borderBottom: "1px solid #000000",
+                borderLeft: "1px solid #000000",
+                borderRight: "1px solid #000000",
+                paddingLeft: "5px",
+              }}
+              colSpan={9}
+              align="left"
+              valign="bottom"
+            >
+              <font color="#000000">&lt;%= action %&gt;</font>
+            </td>
+          </tr>
           <tr>
             <td height={10} align="left" valign="bottom">
               <font color="#000000">
@@ -2566,12 +2505,8 @@ const PrintFormat = () => {
         </tbody>
       </table>
       {/* ************************************************************************** */}
-      <div
-        className="is-flex is-full-width"
-        id="btn_download"
-        style={{ justifyContent: "end" }}
-      >
-        <button className="button mt-4 mb-4 is-outlined is-success">
+      <div className="is-flex is-full-width" id="btn_download">
+        <button className="button mt-4 is-success is-flex-end">
           Descargar
         </button>
       </div>
@@ -2579,4 +2514,4 @@ const PrintFormat = () => {
   );
 };
 
-export default PrintFormat;
+export default Format;

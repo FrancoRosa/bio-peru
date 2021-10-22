@@ -5,7 +5,7 @@ export const toDateTime = (timestamp) => {
 
 export const toDate = (timestamp) => {
   const time = new Date(timestamp);
-  return time.toLocaleString("sv-SE");
+  return time.toLocaleString("sv-SE").split(" ")[0];
 };
 
 export const toStrDate = (dateObj) => {

@@ -7,6 +7,7 @@ import Navigator from "./Navigator";
 import model from "../js/model";
 import DeviceDetails from "./DeviceDetails";
 import PrintFormat from "./PrintFormat";
+import Format from "./Format";
 
 const store = createStore(model);
 
