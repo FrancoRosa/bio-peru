@@ -15,6 +15,7 @@ const NextMaintenances = () => {
   const criticalLevels = useStoreState((state) => state.criticalLevels);
   const devices = useStoreState((state) => state.devices);
   const facilities = useStoreState((state) => state.facilities);
+  const user = useStoreState((state) => state.user);
 
   const setDevices = useStoreActions((actions) => actions.setDevices);
 
@@ -22,7 +23,9 @@ const NextMaintenances = () => {
   const [beforeFilter, setBeforeFilter] = useState([]);
   const [filteredAreas, setFilteredAreas] = useState([]);
   const [area, setArea] = useState(0);
-  const [facility, setFacility] = useState(0);
+  const [facility, setFacility] = useState(
+    user.user_type == "client" ? user.facility_id : 0
+  );
   const [filter, setFilter] = useState("");
 
   useEffect(() => {
@@ -97,6 +100,7 @@ const NextMaintenances = () => {
             <div className="control">
               <div className="select">
                 <select
+                  disabled={user.user_type == "client"}
                   value={facility}
                   onChange={(e) => setFacility(parseInt(e.target.value))}
                 >

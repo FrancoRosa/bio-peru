@@ -73,6 +73,7 @@ const Login = () => {
                 />
               </div>
             </div>
+            <p class="help is-danger has-text-centered">{message}</p>
           </div>
           <div className="card-footer">
             <div className="card-footer-item is-flex-direction-column">
@@ -82,7 +83,6 @@ const Login = () => {
               >
                 Log in
               </button>
-              <p class="help is-danger">{message}</p>
             </div>
           </div>
         </div>
