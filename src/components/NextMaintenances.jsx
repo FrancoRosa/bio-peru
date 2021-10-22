@@ -83,7 +83,7 @@ const NextMaintenances = () => {
       });
       setDevices([...devices]);
     }
-  }, [criticalLevels]);
+  }, []);
 
   const handleClick = (device) => {
     history.push(`/device_details/${device.id}`);

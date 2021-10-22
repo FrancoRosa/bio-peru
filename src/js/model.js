@@ -20,6 +20,17 @@ export default {
   setDevices: action((state, devices) => {
     state.devices = [...devices];
   }),
+  updateDeviceMaintenance: action((state, maintenance) => {
+    state.devices = state.devices.map((d) =>
+      d.id == maintenance.device_id
+        ? {
+            ...d,
+            last_maintenance: maintenance.created_at.split("T")[0],
+            status: "success",
+          }
+        : d
+    );
+  }),
 
   facilities: [],
   setFacilities: action((state, facilities) => {
@@ -34,6 +45,12 @@ export default {
   maintenances: [],
   setMaintenances: action((state, maintenances) => {
     state.maintenances = [...maintenances];
+  }),
+
+  addMaintenance: action((state, maintenance) => {
+    const tempMaintenances = [...state.maintenances];
+    tempMaintenances.push(maintenance);
+    state.maintenances = tempMaintenances;
   }),
 
   user: {},

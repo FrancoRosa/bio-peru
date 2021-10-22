@@ -28,7 +28,7 @@ const MaintenanceList = ({ device }) => {
                 <td>{m.observations}</td>
                 <td>{m.state_before}</td>
                 <td>{m.state_after}</td>
-                <td>{m.maitenance_type}</td>
+                <td>{m.maintenance_type}</td>
                 <td>{getNameById(maintainers, m.maintainer_id)}</td>
                 <td>{m.created_at.split("T")[0]}</td>
               </tr>

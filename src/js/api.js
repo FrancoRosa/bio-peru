@@ -66,3 +66,10 @@ export const getUsers = async () => {
   const response = await axios.get(url);
   return response.data;
 };
+
+export const saveMaintenance = async (maintenance) => {
+  console.log("... saving maintenances");
+  const url = host + `/maintenances.json`;
+  const response = await axios.post(url, maintenance);
+  return response.data;
+};

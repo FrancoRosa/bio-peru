@@ -1,3 +1,4 @@
+import userEvent from "@testing-library/user-event";
 import { useStoreState } from "easy-peasy";
 import { useHistory, useParams } from "react-router";
 import { getNameById, getParentName } from "../js/helpers";
@@ -7,6 +8,7 @@ const DeviceDetails = () => {
   const { device_id } = useParams();
   const history = useHistory();
   const devices = useStoreState((state) => state.devices);
+  const user = useStoreState((state) => state.user);
   const device = devices.find((x) => x.id == device_id);
 
   const areas = useStoreState((state) => state.areas);
@@ -98,6 +100,7 @@ const DeviceDetails = () => {
             <button
               className="button is-outlined mt-4 mr-4"
               onClick={() => history.push(`/save_format/${device_id}`)}
+              disabled={user.user_type != "maintainer"}
             >
               Guardar Formato
             </button>
