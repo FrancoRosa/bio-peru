@@ -1,8 +1,10 @@
 import { useStoreState } from "easy-peasy";
+import { getNameById } from "../js/helpers";
 
 const MaintenanceList = ({ device }) => {
   const { id } = device;
   const maintenances = useStoreState((state) => state.maintenances);
+  const maintainers = useStoreState((state) => state.maintainers);
   const deviceMaintenances = maintenances.filter((m) => m.device_id === id);
   return (
     <>
@@ -22,12 +24,12 @@ const MaintenanceList = ({ device }) => {
           </thead>
           <tbody>
             {deviceMaintenances.map((m) => (
-              <tr>
+              <tr key={m.id}>
                 <td>{m.observations}</td>
                 <td>{m.state_before}</td>
                 <td>{m.state_after}</td>
                 <td>{m.maitenance_type}</td>
-                <td>{m.maintainer_id}</td>
+                <td>{getNameById(maintainers, m.maintainer_id)}</td>
                 <td>{m.created_at.split("T")[0]}</td>
               </tr>
             ))}

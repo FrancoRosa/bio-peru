@@ -59,3 +59,10 @@ export const getMaintenances = async () => {
   const response = await axios.get(url);
   return response.data;
 };
+
+export const getUsers = async () => {
+  console.log("... retrieving users");
+  const url = host + `/users.json`;
+  const response = await axios.get(url);
+  return response.data;
+};

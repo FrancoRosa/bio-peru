@@ -7,7 +7,8 @@ import Navigator from "./Navigator";
 import model from "../js/model";
 import DeviceDetails from "./DeviceDetails";
 import PrintFormat from "./PrintFormat";
-import Format from "./Format";
+import SaveFormat from "./SaveFormat";
+import Login from "./Login";
 
 const store = createStore(model);
 
@@ -18,7 +19,7 @@ const App = () => {
         <StoreProvider store={store}>
           <Navigator />
           <Switch>
-            <Redirect exact from="/" to="/home" />
+            <Redirect exact from="/" to="/login" />
             <Route path="/home" component={Home} />
             <Route path="/new_report" component={NewReport} />
             <Route path="/next_maintenances" component={NextMaintenances} />
@@ -27,6 +28,8 @@ const App = () => {
               component={DeviceDetails}
             />
             <Route path="/print_format/:device_id" component={PrintFormat} />
+            <Route path="/save_format/:device_id" component={SaveFormat} />
+            <Route path="/login" component={Login} />
           </Switch>
         </StoreProvider>
       </div>

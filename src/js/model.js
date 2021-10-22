@@ -35,4 +35,14 @@ export default {
   setMaintenances: action((state, maintenances) => {
     state.maintenances = [...maintenances];
   }),
+
+  user: [],
+  setUser: action((state, users) => {
+    state.users = users;
+  }),
+
+  authenticated: false,
+  setAuthenticated: action((state, authenticated) => {
+    state.authenticated = authenticated;
+  }),
 };
