@@ -37,13 +37,14 @@ const DeviceDetails = () => {
           <table className="table">
             <tbody>
               <tr>
-                <td>Area :</td>
-                <td>{getNameById(areas, area_id)}</td>
-              </tr>
-              <tr>
                 <td>Ubicación :</td>
                 <td>{getParentName(facilities, areas, area_id)}</td>
               </tr>
+              <tr>
+                <td>Area :</td>
+                <td>{getNameById(areas, area_id)}</td>
+              </tr>
+
               <tr>
                 <td>Criticidad :</td>
                 <td>{getNameById(criticalLevels, critical_level_id)}</td>
@@ -78,7 +79,7 @@ const DeviceDetails = () => {
           </table>
         </div>
         <div className="column">
-          <table className={`table has-background-${status}-light`}>
+          <table className={`ml-4 table has-background-${status}-light`}>
             <tbody>
               <tr>
                 <td>Último Mantenimiento :</td>

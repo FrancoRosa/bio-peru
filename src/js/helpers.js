@@ -17,6 +17,11 @@ export const toTime = (timestamp) => {
   return time.toLocaleString("sv-SE").split(" ")[1];
 };
 
+export const capitalize = (word) => {
+  const lower = word.toLowerCase();
+  return word.charAt(0).toUpperCase() + lower.slice(1);
+};
+
 export const getNameById = (arr, id) => {
   const result = arr.filter((obj) => obj.id == id)[0];
   return result?.name;

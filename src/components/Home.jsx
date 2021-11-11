@@ -6,8 +6,8 @@ const Home = () => {
   const facilities = useStoreState((state) => state.facilities);
   const maintainers = useStoreState((state) => state.maintainers);
   return (
-    <div className="column is-flex is-flex-centered ">
-      <div className="card login">
+    <div className="column is-flex is-flex-centered contain">
+      <div className="card login mr-4">
         <h1 className="title is-3 m-4">
           Bienvenido{" "}
           {user.user_type == "client" && (

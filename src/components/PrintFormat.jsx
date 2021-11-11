@@ -61,9 +61,9 @@ const PrintFormat = () => {
   };
 
   return (
-    <div className="column">
+    <div className="column ">
       <h1 className="title is-3 mt-4">Formato imprimible</h1>
-      <div className="mt-4">
+      <div className="mt-4 is-flex is-flex-centered is-flex-direction-column ">
         <style
           type="text/css"
           dangerouslySetInnerHTML={{
@@ -89,7 +89,7 @@ const PrintFormat = () => {
                   borderLeft: "0px solid #000000",
                   borderRight: "0px solid #000000",
                   backgroundImage: `url(${logo})`,
-                  backgroundSize: "80% 100%",
+                  backgroundSize: "75% 100%",
                   backgroundRepeat: "no-repeat",
                   backgroundPosition: "center",
                 }}
@@ -2637,12 +2637,14 @@ const PrintFormat = () => {
         </table>
         {/* ************************************************************************** */}
       </div>
-      <button
-        className="button mt-4 mb-4 is-outlined is-success"
-        onClick={downloadPDF}
-      >
-        Descargar
-      </button>
+      <div className="is-flex is-flex-centered m-4">
+        <button
+          className="button mt-4 mb-4 is-outlined is-success"
+          onClick={downloadPDF}
+        >
+          Descargar
+        </button>
+      </div>
     </div>
   );
 };

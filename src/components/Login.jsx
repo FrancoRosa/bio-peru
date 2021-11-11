@@ -41,7 +41,7 @@ const Login = () => {
   }, []);
 
   return (
-    <div className="column mt-4">
+    <div className="column mt-4 contain ">
       <div className="is-flex is-flex-centered mt-4">
         <div className="card login">
           <div className="card-image">

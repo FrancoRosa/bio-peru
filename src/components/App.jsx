@@ -3,22 +3,22 @@ import { StoreProvider, createStore } from "easy-peasy";
 import NextMaintenances from "./NextMaintenances";
 import NewReport from "./NewReport";
 import Home from "./Home";
-import Navigator from "./Navigator";
 import model from "../js/model";
 import DeviceDetails from "./DeviceDetails";
 import PrintFormat from "./PrintFormat";
 import SaveFormat from "./SaveFormat";
 import Login from "./Login";
 import Footer from "./Footer";
+import TopNavigator from "./TopNavigator";
 
 const store = createStore(model);
 
 const App = () => {
   return (
-    <div className="container m-0 is-fullhd">
-      <div className="columns contain ml-4 mr-4">
-        <StoreProvider store={store}>
-          <Navigator />
+    <StoreProvider store={store}>
+      <div className="container m-0 is-fullhd">
+        <TopNavigator />
+        <div className="columns ml-4 mr-4">
           <Switch>
             <Redirect exact from="/" to="/login" />
             <Route path="/home" component={Home} />
@@ -33,10 +33,10 @@ const App = () => {
             <Route path="/login" component={Login} />
             <Route path="/" component={Login} />
           </Switch>
-        </StoreProvider>
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </StoreProvider>
   );
 };
 
