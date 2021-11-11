@@ -9,7 +9,8 @@ import axios from "axios";
 // };
 
 // const host = "http://localhost:9999";
-const host = "http://localhost:9999";
+const host = "http://localhost:3000";
+// const host = "https://biomedicas.herokuapp.com";
 
 export const getFacilities = async () => {
   console.log("... retrieving facilities");

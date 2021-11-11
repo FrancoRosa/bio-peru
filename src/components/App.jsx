@@ -9,6 +9,7 @@ import DeviceDetails from "./DeviceDetails";
 import PrintFormat from "./PrintFormat";
 import SaveFormat from "./SaveFormat";
 import Login from "./Login";
+import Footer from "./Footer";
 
 const store = createStore(model);
 
@@ -30,9 +31,11 @@ const App = () => {
             <Route path="/print_format/:device_id" component={PrintFormat} />
             <Route path="/save_format/:device_id" component={SaveFormat} />
             <Route path="/login" component={Login} />
+            <Route path="/" component={Login} />
           </Switch>
         </StoreProvider>
       </div>
+      <Footer />
     </div>
   );
 };

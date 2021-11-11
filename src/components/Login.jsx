@@ -35,7 +35,6 @@ const Login = () => {
 
   useEffect(() => {
     getUsers().then((res) => {
-      console.log(res);
       setUsers(res);
       setLoading(false);
     });
@@ -52,7 +51,7 @@ const Login = () => {
           </div>
           <div className="card-content">
             <div className="field">
-              <label className="label">User</label>
+              <label className="label">Usuario</label>
               <div className="control">
                 <input
                   className="input"
@@ -63,7 +62,7 @@ const Login = () => {
               </div>
             </div>
             <div className="field">
-              <label className="label">Password</label>
+              <label className="label">Contraseña</label>
               <div className="control">
                 <input
                   className="input"
@@ -81,7 +80,7 @@ const Login = () => {
                 className={`button ${loading && "is-loading"}`}
                 onClick={handleLogin}
               >
-                Log in
+                Ingresar
               </button>
             </div>
           </div>

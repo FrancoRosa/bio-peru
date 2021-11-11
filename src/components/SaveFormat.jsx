@@ -31,7 +31,6 @@ const SaveFormat = () => {
       maintainer_id: user.maintainer_id,
       device_id,
     };
-    console.log(params);
     saveMaintenance(params).then((res) => {
       addMaintenance(res);
       updateDeviceMaintenance(res);

@@ -87,7 +87,6 @@ const NextMaintenances = () => {
 
   const handleClick = (device) => {
     history.push(`/device_details/${device.id}`);
-    console.log(device);
   };
 
   return (
