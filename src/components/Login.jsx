@@ -1,7 +1,7 @@
 import { useStoreActions, useStoreState } from "easy-peasy";
 import { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo.jpeg";
 import { getUsers } from "../js/api";
 
 const Login = () => {
@@ -41,12 +41,12 @@ const Login = () => {
   }, []);
 
   return (
-    <div className="column">
-      <div className="is-flex is-flex-centered login">
-        <div className="card">
+    <div className="column mt-4">
+      <div className="is-flex is-flex-centered mt-4">
+        <div className="card login">
           <div className="card-image">
-            <figure className="image is-4by3">
-              <img src={logo} className="p-4 logo" />
+            <figure className="image is-5by3 rounded">
+              <img src={logo} className="p-4" />
             </figure>
           </div>
           <div className="card-content">

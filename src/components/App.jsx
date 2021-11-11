@@ -15,8 +15,8 @@ const store = createStore(model);
 
 const App = () => {
   return (
-    <div className="container m-4 is-fullhd">
-      <div className="columns">
+    <div className="container m-0 is-fullhd">
+      <div className="columns contain ml-4 mr-4">
         <StoreProvider store={store}>
           <Navigator />
           <Switch>

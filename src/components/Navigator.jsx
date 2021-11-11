@@ -57,21 +57,23 @@ const Navigator = () => {
 
   return (
     <aside className={`menu column is-one-fifth ${!authenticated && "hidden"}`}>
-      <p class="menu-label">Menu</p>
-      <ul class="menu-list">
-        <li>
-          <Link to="/home">Inicio</Link>
-        </li>
-        <li>
-          <Link to="/next_maintenances">Equipos Medicos</Link>
-        </li>
-      </ul>
-      <p class="menu-label"></p>
-      <ul class="menu-list ">
-        <Link className="has-text-danger" to="/login" onClick={handleLogOut}>
-          Salir
-        </Link>
-      </ul>
+      <div className="card p-4 login">
+        <p class="menu-label">Menu</p>
+        <ul class="menu-list">
+          <li>
+            <Link to="/home">Inicio</Link>
+          </li>
+          <li>
+            <Link to="/next_maintenances">Equipos Medicos</Link>
+          </li>
+        </ul>
+        <p class="menu-label"></p>
+        <ul class="menu-list ">
+          <Link className="has-text-primary" to="/login" onClick={handleLogOut}>
+            Salir
+          </Link>
+        </ul>
+      </div>
     </aside>
   );
 };

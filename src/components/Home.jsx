@@ -6,17 +6,21 @@ const Home = () => {
   const facilities = useStoreState((state) => state.facilities);
   const maintainers = useStoreState((state) => state.maintainers);
   return (
-    <div className="column">
-      <h1 className="title is-3 mt-4">
-        Bienvenido <span className="has-text-grey">{user.name}</span>{" "}
-      </h1>
-      <div>
-        {user.user_type == "client" && (
-          <p>{getNameById(facilities, user.facility_id)}</p>
-        )}
-        {user.user_type == "maintainer" && (
-          <p>{getNameById(maintainers, user.maintainer_id)}</p>
-        )}
+    <div className="column is-flex is-flex-centered ">
+      <div className="card login">
+        <h1 className="title is-3 m-4">
+          Bienvenido{" "}
+          {user.user_type == "client" && (
+            <span className="has-text-grey">
+              {getNameById(facilities, user.facility_id)}
+            </span>
+          )}
+          {user.user_type == "maintainer" && (
+            <span className="has-text-grey">
+              {getNameById(maintainers, user.maintainer_id)}
+            </span>
+          )}
+        </h1>
       </div>
     </div>
   );

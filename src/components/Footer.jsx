@@ -4,7 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Footer = () => {
   return (
-    <footer className="footer p-0">
+    <footer className="footer p-0 full-width">
+      <hr className="m-0 p-0" />
       <div className="content has-text-centered p-4">
         <a
           href="https://www.facebook.com/groups/395326574787053/about"
