@@ -70,10 +70,10 @@ const TopNavigator = () => {
                 size="2x"
                 className="has-text-link mr-2 ml-3"
               />
-              <span className="title is-3 has-text-link">
-                Soluciones Biomedicas Peruanas
-              </span>
             </p>
+            <span className="title is-3 has-text-link mt-3 mr-3">
+              Soluciones Biomedicas Peruanas
+            </span>
             <div
               className="navbar-burger"
               data-target="navbarExampleTransparentExample"

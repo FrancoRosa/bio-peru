@@ -102,13 +102,13 @@ const DeviceDetails = () => {
           </table>
           <div>
             <button
-              className="button is-outlined"
+              className="button is-outlined m-2"
               onClick={() => history.push(`/print_format/${device_id}`)}
             >
               Generar Formato
             </button>
             <button
-              className="button is-outlined ml-3"
+              className="button is-outlined m-2"
               onClick={() => history.push(`/save_format/${device_id}`)}
               disabled={user.user_type != "maintainer"}
             >

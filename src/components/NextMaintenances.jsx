@@ -148,43 +148,44 @@ const NextMaintenances = () => {
           </div>
         </div>
       </div>
-
-      <table className="table is-narrow is-hoverable is-fullwidth">
-        <thead>
-          <tr>
-            <th>Nro</th>
-            <th>Ubicacion</th>
-            <th>Area</th>
-            <th>Denominacion</th>
-            <th>Marca</th>
-            <th>Modelo</th>
-            <th>Serie</th>
-            <th>Criticidad</th>
-            <th>Ultimo Man</th>
-            <th>Proximo Man</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredDevices.map((d, i) => (
-            <tr
-              key={d.id}
-              className={"has-background-" + d.status + "-light pointer"}
-              onClick={() => handleClick(d)}
-            >
-              <td>{i}</td>
-              <td>{getParentName(facilities, areas, d.area_id)}</td>
-              <td>{getNameById(areas, d.area_id)}</td>
-              <td>{d.name}</td>
-              <td>{d.brand}</td>
-              <td>{d.model}</td>
-              <td>{d.serial}</td>
-              <td>{getNameById(criticalLevels, d.critical_level_id)}</td>
-              <td>{d.last_maintenance}</td>
-              <td className={"has-text-" + d.status + "-dark"}>{d.next}</td>
+      <div class="table-container">
+        <table className="table is-narrow is-hoverable is-fullwidth">
+          <thead>
+            <tr>
+              <th>Nro</th>
+              <th>Ubicacion</th>
+              <th>Area</th>
+              <th>Denominacion</th>
+              <th>Marca</th>
+              <th>Modelo</th>
+              <th>Serie</th>
+              <th>Criticidad</th>
+              <th>Ultimo Man</th>
+              <th>Proximo Man</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {filteredDevices.map((d, i) => (
+              <tr
+                key={d.id}
+                className={"has-background-" + d.status + "-light pointer"}
+                onClick={() => handleClick(d)}
+              >
+                <td>{i}</td>
+                <td>{getParentName(facilities, areas, d.area_id)}</td>
+                <td>{getNameById(areas, d.area_id)}</td>
+                <td>{d.name}</td>
+                <td>{d.brand}</td>
+                <td>{d.model}</td>
+                <td>{d.serial}</td>
+                <td>{getNameById(criticalLevels, d.critical_level_id)}</td>
+                <td>{d.last_maintenance}</td>
+                <td className={"has-text-" + d.status + "-dark"}>{d.next}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

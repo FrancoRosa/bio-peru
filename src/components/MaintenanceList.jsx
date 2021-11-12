@@ -14,7 +14,7 @@ const MaintenanceList = ({ device }) => {
   };
 
   return (
-    <>
+    <div className="table-container">
       {maintenances.length === 0 ? (
         <p> No hay registro de mantenimientos</p>
       ) : (
@@ -43,7 +43,7 @@ const MaintenanceList = ({ device }) => {
           </tbody>
         </table>
       )}
-    </>
+    </div>
   );
 };
 
