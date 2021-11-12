@@ -1,5 +1,7 @@
 import { useStoreState } from "easy-peasy";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { getImgURLs, listFiles } from "../js/firebase";
 
 const MaintenanceDetails = () => {
   const { maintenance_id } = useParams();
@@ -9,7 +11,13 @@ const MaintenanceDetails = () => {
   const maintainers = useStoreState((state) => state.maintainers);
   const device = devices.find((x) => x.id == maintenance.device_id);
   const maintainer = maintainers.find((x) => x.id == maintenance.maintainer_id);
+  const [imgURLs, setImgURLs] = useState([]);
 
+  useEffect(() => {
+    listFiles(maintenance.id).then((refs) => {
+      getImgURLs(refs).then((res) => setImgURLs(res));
+    });
+  }, []);
   return (
     <div className="column contain">
       <h1 className="title is-3 mt-4">Detalles del Mantenimiento</h1>
@@ -96,6 +104,12 @@ const MaintenanceDetails = () => {
             </tbody>
           </table>
         </div>
+      </div>
+      <hr />
+      <div className="column is-flex is-flex-centered is-flex-direction-column">
+        {imgURLs.map((imgURL) => (
+          <img src={imgURL} alt="" className="m-4" />
+        ))}
       </div>
     </div>
   );

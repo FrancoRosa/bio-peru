@@ -3,7 +3,8 @@ import { useStoreActions, useStoreState } from "easy-peasy";
 import { useHistory, useParams } from "react-router";
 import { saveMaintenance } from "../js/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faUpload } from "@fortawesome/free-solid-svg-icons";
+import { faUpload } from "@fortawesome/free-solid-svg-icons";
+import { uploadFiles } from "../js/firebase";
 
 const SaveFormat = () => {
   const user = useStoreState((state) => state.user);
@@ -13,7 +14,7 @@ const SaveFormat = () => {
   );
   const [inputMainType, setInputMainType] = useState("Preventivo");
   const [fileName, setFileName] = useState();
-  const [selectedFile, setSelectedFile] = useState([]);
+  const [selectedFiles, setSelectedFiles] = useState([]);
   const { device_id } = useParams();
   const inputObs = useRef();
   const inputParts = useRef();
@@ -37,6 +38,7 @@ const SaveFormat = () => {
     };
     saveMaintenance(params).then((res) => {
       addMaintenance(res);
+      uploadFiles(res.id, selectedFiles);
       updateDeviceMaintenance(res);
     });
     history.push(`/device_details/${device_id}`);
@@ -44,20 +46,22 @@ const SaveFormat = () => {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    if (selectedFile.includes(file))
+    if (selectedFiles.includes(file)) {
       setFileName("Esa imagen ya fue seleccionada");
-    else setSelectedFile([...selectedFile, file]);
+    } else {
+      setSelectedFiles([...selectedFiles, file]);
+    }
   };
 
   const removeFile = (file) => {
-    const files = [...selectedFile];
+    const files = [...selectedFiles];
     files.splice(files.indexOf(file), 1);
-    setSelectedFile(files);
+    setSelectedFiles(files);
   };
 
   useEffect(() => {
-    setFileName(selectedFile?.name || "Seleccionar imagen ...");
-  }, [selectedFile]);
+    setFileName("Seleccionar imagen ...");
+  }, [selectedFiles]);
 
   return (
     <div className="column mr-4 mt-4">
@@ -124,7 +128,7 @@ const SaveFormat = () => {
               </div>
             </div>
             <div className="columns">
-              {selectedFile.map((f) => (
+              {selectedFiles.map((f) => (
                 <div className="column">
                   <button
                     className="button is-primary remove-img"
@@ -136,7 +140,7 @@ const SaveFormat = () => {
                 </div>
               ))}
             </div>
-            {selectedFile.length < 3 && (
+            {selectedFiles.length < 3 && (
               <div className="file is-boxed">
                 <label className="file-label">
                   <input
@@ -157,13 +161,17 @@ const SaveFormat = () => {
             )}
           </div>
 
-          <div className="is-flex is-flex-centered mt-4">
+          <div className="is-flex is-flex-centered mt-4 is-flex-direction-column">
             <button
               className="button is-outlined is-success"
               onClick={handleRegister}
+              disabled={selectedFiles == 0}
             >
               Registrar
             </button>
+            {selectedFiles == 0 && (
+              <p className="help">Añada almenos una imagen</p>
+            )}
           </div>
         </div>
         <div className="column"></div>
