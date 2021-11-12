@@ -326,8 +326,3 @@ body,
   position: relative;
   bottom: 1em;
 }
-
-footer {
-  position: sticky;
-  bottom: 0;
-}

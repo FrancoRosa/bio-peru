@@ -21,7 +21,10 @@ const App = () => {
       <StoreProvider store={store}>
         <div className="m-0">
           <TopNavigator />
-          <div className="columns full-width m-0">
+          <div
+            className="columns full-width m-0"
+            style={{ padding: "1em 2em" }}
+          >
             <Switcher />
           </div>
           <Footer />
