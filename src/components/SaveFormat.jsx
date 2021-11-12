@@ -13,7 +13,6 @@ const SaveFormat = () => {
     (actions) => actions.updateDeviceMaintenance
   );
   const [inputMainType, setInputMainType] = useState("Preventivo");
-  const [fileName, setFileName] = useState();
   const [selectedFiles, setSelectedFiles] = useState([]);
   const { device_id } = useParams();
   const inputObs = useRef();
@@ -46,11 +45,7 @@ const SaveFormat = () => {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    if (selectedFiles.includes(file)) {
-      setFileName("Esa imagen ya fue seleccionada");
-    } else {
-      setSelectedFiles([...selectedFiles, file]);
-    }
+    setSelectedFiles([...selectedFiles, file]);
   };
 
   const removeFile = (file) => {
@@ -58,10 +53,6 @@ const SaveFormat = () => {
     files.splice(files.indexOf(file), 1);
     setSelectedFiles(files);
   };
-
-  useEffect(() => {
-    setFileName("Seleccionar imagen ...");
-  }, [selectedFiles]);
 
   return (
     <div className="column mr-4 mt-4">
@@ -129,19 +120,19 @@ const SaveFormat = () => {
             </div>
             <div className="columns">
               {selectedFiles.map((f) => (
-                <div className="column">
+                <div className="column is-flex is-flex-centered is-flex-direction-column mb-4">
+                  <img src={URL.createObjectURL(f)} alt="" />
                   <button
                     className="button is-primary remove-img"
                     onClick={() => removeFile(f)}
                   >
                     Quitar
                   </button>
-                  <img src={URL.createObjectURL(f)} alt="" />
                 </div>
               ))}
             </div>
             {selectedFiles.length < 3 && (
-              <div className="file is-boxed">
+              <div className="file is-link">
                 <label className="file-label">
                   <input
                     className="file-input"
@@ -154,7 +145,7 @@ const SaveFormat = () => {
                     <span className="file-icon">
                       <FontAwesomeIcon icon={faUpload} />
                     </span>
-                    <span className="file-label">{fileName}</span>
+                    <span className="file-label">Subir imagen</span>
                   </span>
                 </label>
               </div>

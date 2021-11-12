@@ -316,6 +316,5 @@ body,
 
 .remove-img {
   position: relative;
-  bottom: -3em;
-  left: 0.5em;
+  bottom: 1em;
 }
