@@ -34,6 +34,7 @@ const TopNavigator = () => {
   );
 
   const [show, setShow] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
 
   const handleLogOut = () => {
     setAuthenticated(false);
@@ -76,6 +77,7 @@ const TopNavigator = () => {
             <div
               className="navbar-burger"
               data-target="navbarExampleTransparentExample"
+              onClick={() => setShowMenu(!showMenu)}
             >
               <span></span>
               <span></span>
@@ -83,7 +85,10 @@ const TopNavigator = () => {
             </div>
           </div>
 
-          <div id="navbarExampleTransparentExample" className="navbar-menu">
+          <div
+            id="navbarExampleTransparentExample"
+            className={`${showMenu && "is-active"} navbar-menu`}
+          >
             <div className="navbar-start">
               <Link to="/home" className="navbar-item">
                 Inicio
