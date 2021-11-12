@@ -23,7 +23,7 @@ const MaintenanceDetails = () => {
   }, []);
 
   return (
-    <div className="column contain">
+    <div className="column contain transparency">
       <h1 className="title is-3 mt-4">Detalles del Mantenimiento</h1>
       <div className="columns">
         <div className="column is-one-third is-flex is-flex-centered is-flex-direction-column">

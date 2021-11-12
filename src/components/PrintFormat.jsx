@@ -61,7 +61,7 @@ const PrintFormat = () => {
   };
 
   return (
-    <div className="column ">
+    <div className="column transparency">
       <h1 className="title is-3 mt-4">Formato imprimible</h1>
       <hr />
       <div className="mt-4 is-flex is-flex-centered is-flex-direction-column ">

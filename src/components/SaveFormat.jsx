@@ -55,7 +55,7 @@ const SaveFormat = () => {
   };
 
   return (
-    <div className="column mr-4 mt-4">
+    <div className="column transparency mr-4 mt-4">
       <h1 className="title is-3 mt-4">Guardar formato</h1>
       <div className="columns">
         <div className="column"></div>

@@ -3,20 +3,29 @@ import model from "../js/model";
 import Footer from "./Footer";
 import TopNavigator from "./TopNavigator";
 import Switcher from "./Switcher";
+import background from "../assets/brain.jpeg";
 
 const store = createStore(model);
 
 const App = () => {
   return (
-    <StoreProvider store={store}>
-      <div className="container m-0 is-fullhd">
-        <TopNavigator />
-        <div className="columns ml-4 mr-4">
-          <Switcher />
+    <div
+      style={{
+        backgroundImage: `url(${background})`,
+        backgroundSize: "100% 100%",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      <StoreProvider store={store}>
+        <div className="m-0">
+          <TopNavigator />
+          <div className="columns mt-4 ml-4 mr-4 full-width">
+            <Switcher />
+          </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
-    </StoreProvider>
+      </StoreProvider>
+    </div>
   );
 };
 

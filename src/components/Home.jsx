@@ -8,7 +8,7 @@ const Home = () => {
 
   return (
     <div className="column is-flex is-flex-centered contain">
-      <div className="card login mr-4">
+      <div className="card transparency mr-4">
         <h1 className="title is-3 m-4">
           Bienvenido{" "}
           {user.user_type == "client" && (

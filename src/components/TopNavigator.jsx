@@ -62,7 +62,7 @@ const TopNavigator = () => {
   return (
     <>
       {authenticated && (
-        <nav className="navbar login full-width pl-4 pr-4">
+        <nav className="navbar transparency full-width pl-4 pr-4">
           <div className="navbar-brand">
             <p className="navbar-item">
               <FontAwesomeIcon

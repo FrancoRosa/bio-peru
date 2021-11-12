@@ -41,48 +41,46 @@ const Login = () => {
   }, []);
 
   return (
-    <div className="column mt-4 contain ">
-      <div className="is-flex is-flex-centered mt-4">
-        <div className="card login">
-          <div className="card-image">
-            <figure className="image is-5by3 rounded">
-              <img src={logo} className="p-4" />
-            </figure>
+    <div className="column is-flex is-flex-centered mt-4 contain ">
+      <div className="card login">
+        <div className="card-image">
+          <figure className="image is-5by3 rounded">
+            <img src={logo} className="p-4" />
+          </figure>
+        </div>
+        <div className="card-content">
+          <div className="field">
+            <label className="label">Usuario</label>
+            <div className="control">
+              <input
+                className="input"
+                type="text"
+                ref={userContainer}
+                onFocus={() => setMessage("")}
+              />
+            </div>
           </div>
-          <div className="card-content">
-            <div className="field">
-              <label className="label">Usuario</label>
-              <div className="control">
-                <input
-                  className="input"
-                  type="text"
-                  ref={userContainer}
-                  onFocus={() => setMessage("")}
-                />
-              </div>
+          <div className="field">
+            <label className="label">Contraseña</label>
+            <div className="control">
+              <input
+                className="input"
+                type="password"
+                ref={passContainer}
+                onFocus={() => setMessage("")}
+              />
             </div>
-            <div className="field">
-              <label className="label">Contraseña</label>
-              <div className="control">
-                <input
-                  className="input"
-                  type="password"
-                  ref={passContainer}
-                  onFocus={() => setMessage("")}
-                />
-              </div>
-            </div>
-            <p class="help is-danger has-text-centered">{message}</p>
           </div>
-          <div className="card-footer">
-            <div className="card-footer-item is-flex-direction-column">
-              <button
-                className={`button ${loading && "is-loading"}`}
-                onClick={handleLogin}
-              >
-                Ingresar
-              </button>
-            </div>
+          <p class="help is-danger has-text-centered">{message}</p>
+        </div>
+        <div className="card-footer">
+          <div className="card-footer-item is-flex-direction-column">
+            <button
+              className={`mb-4 button ${loading && "is-loading"}`}
+              onClick={handleLogin}
+            >
+              Ingresar
+            </button>
           </div>
         </div>
       </div>

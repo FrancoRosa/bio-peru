@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Footer = () => {
   return (
-    <footer className="footer p-0 full-width">
+    <footer className="p-0 full-width transparency">
       <hr className="m-0 p-0" />
       <div className="content has-text-centered p-4">
         <a
