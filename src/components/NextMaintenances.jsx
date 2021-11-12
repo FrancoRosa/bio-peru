@@ -90,7 +90,7 @@ const NextMaintenances = () => {
   };
 
   return (
-    <div className="column">
+    <div className="column contain">
       <h1 className="title is-3 mt-4">Equipos Medicos</h1>
       <div className="columns m-4">
         <div className="column">

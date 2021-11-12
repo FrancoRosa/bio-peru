@@ -10,6 +10,7 @@ import SaveFormat from "./SaveFormat";
 import Login from "./Login";
 import Footer from "./Footer";
 import TopNavigator from "./TopNavigator";
+import MaintenanceDetails from "./MaintenanceDetails";
 
 const store = createStore(model);
 
@@ -27,6 +28,10 @@ const App = () => {
             <Route
               path="/device_details/:device_id"
               component={DeviceDetails}
+            />
+            <Route
+              path="/maintenance_details/:maintenance_id"
+              component={MaintenanceDetails}
             />
             <Route path="/print_format/:device_id" component={PrintFormat} />
             <Route path="/save_format/:device_id" component={SaveFormat} />

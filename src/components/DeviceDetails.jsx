@@ -1,7 +1,6 @@
-import userEvent from "@testing-library/user-event";
 import { useStoreState } from "easy-peasy";
 import { useHistory, useParams } from "react-router";
-import { getNameById, getParentName } from "../js/helpers";
+import { getNameById, getNextMaintenance, getParentName } from "../js/helpers";
 import MaintenanceList from "./MaintenanceList";
 
 const DeviceDetails = () => {
@@ -30,11 +29,11 @@ const DeviceDetails = () => {
   } = device;
 
   return (
-    <div className="column">
+    <div className="column contain">
       <h1 className="title is-3 mt-4">Detalles del equipo</h1>
       <div className="columns">
-        <div className="column">
-          <table className="table">
+        <div className="column is-flex is-flex-centered">
+          <table className="table" style={{ borderRadius: "5px" }}>
             <tbody>
               <tr>
                 <td>Ubicación :</td>
@@ -52,8 +51,8 @@ const DeviceDetails = () => {
             </tbody>
           </table>
         </div>
-        <div className="column">
-          <table className={`table`}>
+        <div className="column is-flex is-flex-centered is-flex-direction-column">
+          <table className="table" style={{ borderRadius: "5px" }}>
             <tbody>
               <tr>
                 <td>Nombre :</td>
@@ -71,35 +70,45 @@ const DeviceDetails = () => {
                 <td>Serial :</td>
                 <td>{serial}</td>
               </tr>
-              <tr className="help">
+              <tr>
                 <td>Tipo :</td>
                 <td>{getNameById(deviceTypes, device_type_id)}</td>
               </tr>
             </tbody>
           </table>
         </div>
-        <div className="column">
-          <table className={`ml-4 table has-background-${status}-light`}>
+        <div className="column is-flex is-flex-centered is-flex-direction-column">
+          <table
+            className={`m-0 p-0 table has-background-${status}-light`}
+            style={{ borderRadius: "10px" }}
+          >
             <tbody>
               <tr>
                 <td>Último Mantenimiento :</td>
                 <td>{last_maintenance}</td>
               </tr>
+            </tbody>
+          </table>
+          <table
+            className={`m-0 p-0 table has-background-${status}-light`}
+            style={{ borderRadius: "10px" }}
+          >
+            <tbody>
               <tr>
                 <td>Próximo Mantenimiento :</td>
-                <td>{next}</td>
+                <td>{getNextMaintenance(device, criticalLevels)}</td>
               </tr>
             </tbody>
           </table>
-          <div className="is-flex is-flex-direction-column mr-4">
+          <div>
             <button
-              className="button is-outlined mt-4 mr-4"
+              className="button is-outlined"
               onClick={() => history.push(`/print_format/${device_id}`)}
             >
               Generar Formato
             </button>
             <button
-              className="button is-outlined mt-4 mr-4"
+              className="button is-outlined ml-3"
               onClick={() => history.push(`/save_format/${device_id}`)}
               disabled={user.user_type != "maintainer"}
             >

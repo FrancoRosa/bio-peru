@@ -1,11 +1,18 @@
 import { useStoreState } from "easy-peasy";
+import { useHistory } from "react-router";
 import { getNameById } from "../js/helpers";
 
 const MaintenanceList = ({ device }) => {
+  const history = useHistory();
   const { id } = device;
   const maintenances = useStoreState((state) => state.maintenances);
   const maintainers = useStoreState((state) => state.maintainers);
   const deviceMaintenances = maintenances.filter((m) => m.device_id === id);
+
+  const handleClick = (maintenance_id) => {
+    history.push(`/maintenance_details/${maintenance_id.id}`);
+  };
+
   return (
     <>
       {maintenances.length === 0 ? (
@@ -24,7 +31,7 @@ const MaintenanceList = ({ device }) => {
           </thead>
           <tbody>
             {deviceMaintenances.map((m) => (
-              <tr key={m.id}>
+              <tr key={m.id} onClick={() => handleClick(m)} className="pointer">
                 <td>{m.observations}</td>
                 <td>{m.state_before}</td>
                 <td>{m.state_after}</td>

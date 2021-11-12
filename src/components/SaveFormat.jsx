@@ -1,7 +1,9 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useStoreActions, useStoreState } from "easy-peasy";
 import { useHistory, useParams } from "react-router";
 import { saveMaintenance } from "../js/api";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faUpload } from "@fortawesome/free-solid-svg-icons";
 
 const SaveFormat = () => {
   const user = useStoreState((state) => state.user);
@@ -10,6 +12,8 @@ const SaveFormat = () => {
     (actions) => actions.updateDeviceMaintenance
   );
   const [inputMainType, setInputMainType] = useState("Preventivo");
+  const [fileName, setFileName] = useState();
+  const [selectedFile, setSelectedFile] = useState([]);
   const { device_id } = useParams();
   const inputObs = useRef();
   const inputParts = useRef();
@@ -38,85 +42,132 @@ const SaveFormat = () => {
     history.push(`/device_details/${device_id}`);
   };
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (selectedFile.includes(file))
+      setFileName("Esa imagen ya fue seleccionada");
+    else setSelectedFile([...selectedFile, file]);
+  };
+
+  const removeFile = (file) => {
+    const files = [...selectedFile];
+    files.splice(files.indexOf(file), 1);
+    setSelectedFile(files);
+  };
+
+  useEffect(() => {
+    setFileName(selectedFile?.name || "Seleccionar imagen ...");
+  }, [selectedFile]);
+
   return (
     <div className="column mr-4 mt-4">
       <h1 className="title is-3 mt-4">Guardar formato</h1>
-      <div>
-        <div class="field">
-          <label class="label">Observaciones</label>
-          <div class="control">
-            <input ref={inputObs} class="input" type="text" />
-          </div>
-        </div>
-        <div class="field">
-          <label class="label">Partes</label>
-          <div class="control">
-            <input ref={inputParts} class="input" type="text" />
-          </div>
-        </div>
-        <div class="field">
-          <label class="label">Estado anterior</label>
-          <div class="control">
-            <input ref={inputStateBef} class="input" type="text" />
-          </div>
-        </div>
-        <div class="field">
-          <label class="label">Estado Actual</label>
-          <div class="control">
-            <input ref={inputStateNow} class="input" type="text" />
-          </div>
-        </div>
-        <div class="field">
-          <label class="label">Tipo de mantenimiento</label>
-          <div class="control">
-            <div class="select">
-              <select
-                value={inputMainType}
-                onChange={(e) => setInputMainType(e.target.value)}
-              >
-                <option value="Preventivo">Preventivo</option>
-                <option value="Correctivo">Correctivo</option>
-                <option value="Instalacion">Instalacion</option>
-                <option value="Otro">Otro</option>
-              </select>
+      <div className="columns">
+        <div className="column"></div>
+        <div className="column is-half">
+          <div>
+            <div className="field">
+              <label className="label">Observaciones</label>
+              <div className="control">
+                <input ref={inputObs} className="input" type="text" />
+              </div>
             </div>
+            <div className="field">
+              <label className="label">Partes</label>
+              <div className="control">
+                <input ref={inputParts} className="input" type="text" />
+              </div>
+            </div>
+            <div className="field">
+              <label className="label">Estado anterior</label>
+              <div className="control">
+                <input ref={inputStateBef} className="input" type="text" />
+              </div>
+            </div>
+            <div className="field">
+              <label className="label">Estado Actual</label>
+              <div className="control">
+                <input ref={inputStateNow} className="input" type="text" />
+              </div>
+            </div>
+            <div className="field">
+              <label className="label">Tipo de mantenimiento</label>
+              <div className="control">
+                <div className="select">
+                  <select
+                    value={inputMainType}
+                    onChange={(e) => setInputMainType(e.target.value)}
+                  >
+                    <option value="Preventivo">Preventivo</option>
+                    <option value="Correctivo">Correctivo</option>
+                    <option value="Instalacion">Instalacion</option>
+                    <option value="Otro">Otro</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div className="field">
+              <label className="label">Diagnostico</label>
+              <div className="control">
+                <input ref={inputDiagnosis} className="input" type="text" />
+              </div>
+            </div>
+            <div className="field">
+              <label className="label">Actividades</label>
+              <div className="control">
+                <textarea
+                  ref={inputActivities}
+                  className="input"
+                  type="text"
+                  style={{ height: "5em" }}
+                />
+              </div>
+            </div>
+            <div className="columns">
+              {selectedFile.map((f) => (
+                <div className="column">
+                  <button
+                    className="button is-primary remove-img"
+                    onClick={() => removeFile(f)}
+                  >
+                    Quitar
+                  </button>
+                  <img src={URL.createObjectURL(f)} alt="" />
+                </div>
+              ))}
+            </div>
+            {selectedFile.length < 3 && (
+              <div className="file is-boxed">
+                <label className="file-label">
+                  <input
+                    className="file-input"
+                    type="file"
+                    name="photo"
+                    onChange={handleFileChange}
+                    accept="image/*"
+                  />
+                  <span className="file-cta">
+                    <span className="file-icon">
+                      <FontAwesomeIcon icon={faUpload} />
+                    </span>
+                    <span className="file-label">{fileName}</span>
+                  </span>
+                </label>
+              </div>
+            )}
+          </div>
+
+          <div className="is-flex is-flex-centered mt-4">
+            <button
+              className="button is-outlined is-success"
+              onClick={handleRegister}
+            >
+              Registrar
+            </button>
           </div>
         </div>
-        <div class="field">
-          <label class="label">Diagnostico</label>
-          <div class="control">
-            <input ref={inputDiagnosis} class="input" type="text" />
-          </div>
-        </div>
-        <div class="field">
-          <label class="label">Actividades</label>
-          <div class="control">
-            <textarea
-              ref={inputActivities}
-              class="input"
-              type="text"
-              style={{ height: "5em" }}
-            />
-          </div>
-        </div>
-        <div class="file has-name is-boxed">
-          <label class="file-label">
-            <input class="file-input" type="file" name="resume" />
-            <span class="file-cta">
-              <span class="file-label">Seleccionar foto</span>
-            </span>
-            <span class="file-name">
-              Screen Shot 2017-07-29 at 15.54.25.png
-            </span>
-          </label>
-        </div>
+        <div className="column"></div>
       </div>
-      <button
-        className="button is-outlined is-success"
-        onClick={handleRegister}
-      >
-        Registrar
-      </button>
     </div>
   );
 };

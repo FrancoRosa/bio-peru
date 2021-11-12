@@ -63,6 +63,7 @@ const PrintFormat = () => {
   return (
     <div className="column ">
       <h1 className="title is-3 mt-4">Formato imprimible</h1>
+      <hr />
       <div className="mt-4 is-flex is-flex-centered is-flex-direction-column ">
         <style
           type="text/css"
@@ -2299,7 +2300,7 @@ const PrintFormat = () => {
                 valign="bottom"
                 contentEditable
               >
-                <font color="#000000">{maintainer.name}</font>
+                <font color="#000000">{maintainer?.name}</font>
               </td>
               <td
                 style={{
@@ -2313,7 +2314,7 @@ const PrintFormat = () => {
                 valign="bottom"
                 contentEditable
               >
-                <font color="#000000">{maintainer.dni}</font>
+                <font color="#000000">{maintainer?.dni}</font>
               </td>
             </tr>
             <tr className="empty">

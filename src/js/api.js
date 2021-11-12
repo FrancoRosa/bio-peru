@@ -1,16 +1,11 @@
 import axios from "axios";
 
-// export const startControlledPump = async (pump) => {
-//   console.log("... starting controlled pump");
-//   const { id, pulses, timeout } = pump;
-//   const url = `http://${host}:9999/api/startcontrolled`;
-//   const response = await axios.post(url, { id, pulses, timeout });
-//   return response.data;
-// };
-
-// const host = "http://localhost:9999";
-const host = "http://localhost:3000";
-// const host = "https://biomedicas.herokuapp.com";
+let host;
+if (window.location.hostname == "localhost") {
+  host = "http://localhost:3000";
+} else {
+  host = "https://biomedicas.herokuapp.com";
+}
 
 export const getFacilities = async () => {
   console.log("... retrieving facilities");
