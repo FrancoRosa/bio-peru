@@ -3,7 +3,7 @@ import model from "../js/model";
 import Footer from "./Footer";
 import TopNavigator from "./TopNavigator";
 import Switcher from "./Switcher";
-import background from "../assets/brain.jpeg";
+import background from "../assets/new_brain.jpeg";
 
 const store = createStore(model);
 

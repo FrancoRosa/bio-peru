@@ -305,8 +305,12 @@ body,
   display: none;
 }
 
+.contain_login {
+  min-height: 70vh;
+}
+
 .contain {
-  min-height: 85vh;
+  min-height: 62vh;
 }
 
 .login {
