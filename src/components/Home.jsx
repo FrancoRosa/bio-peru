@@ -1,10 +1,15 @@
 import { useStoreState } from "easy-peasy";
+import { useEffect } from "react";
+import { useHistory } from "react-router";
 import { getNameById } from "../js/helpers";
 
 const Home = () => {
+  const history = useHistory();
   const user = useStoreState((state) => state.user);
   const facilities = useStoreState((state) => state.facilities);
   const maintainers = useStoreState((state) => state.maintainers);
+  if (user.name == null) history.push("/login");
+
   return (
     <div className="column is-flex is-flex-centered contain">
       <div className="card login mr-4">

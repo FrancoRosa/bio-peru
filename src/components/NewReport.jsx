@@ -1,5 +1,6 @@
 import { useStoreActions, useStoreState } from "easy-peasy";
 import { useEffect, useState } from "react";
+import { useHistory } from "react-router";
 import {
   getNameById,
   getParentName,
@@ -7,6 +8,7 @@ import {
   getNextMaintenance,
   deviceToString,
 } from "../js/helpers";
+
 const NewReport = () => {
   const areas = useStoreState((state) => state.areas);
   const criticalLevels = useStoreState((state) => state.criticalLevels);
@@ -21,6 +23,10 @@ const NewReport = () => {
   const [area, setArea] = useState(0);
   const [facility, setFacility] = useState(0);
   const [filter, setFilter] = useState("");
+
+  const history = useHistory();
+  const user = useStoreState((state) => state.user);
+  if (user.name == null) history.push("/login");
 
   useEffect(() => {
     const applyFilter = () => {

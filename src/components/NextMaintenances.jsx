@@ -27,6 +27,7 @@ const NextMaintenances = () => {
     user.user_type == "client" ? user.facility_id : 0
   );
   const [filter, setFilter] = useState("");
+  if (user.name == null) history.push("/login");
 
   useEffect(() => {
     const applyFilter = () => {
