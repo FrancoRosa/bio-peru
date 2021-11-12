@@ -112,7 +112,7 @@ const MaintenanceDetails = () => {
       <hr />
       <div className="column is-flex is-flex-centered is-flex-direction-column">
         {imgURLs.map((imgURL) => (
-          <img src={imgURL} alt="" className="m-4" />
+          <img src={imgURL} alt="" className="m-4" width="50%" />
         ))}
       </div>
     </div>

@@ -14,6 +14,8 @@ const SaveFormat = () => {
   );
   const [inputMainType, setInputMainType] = useState("Preventivo");
   const [selectedFiles, setSelectedFiles] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
   const { device_id } = useParams();
   const inputObs = useRef();
   const inputParts = useRef();
@@ -35,17 +37,24 @@ const SaveFormat = () => {
       maintainer_id: user.maintainer_id,
       device_id,
     };
-    saveMaintenance(params).then((res) => {
-      addMaintenance(res);
-      uploadFiles(res.id, selectedFiles);
-      updateDeviceMaintenance(res);
-    });
-    history.push(`/device_details/${device_id}`);
+    if (params.observations != "") {
+      setLoading(true);
+      setMessage("Guardando imagen");
+      saveMaintenance(params).then((res) => {
+        addMaintenance(res);
+        updateDeviceMaintenance(res);
+        uploadFiles(res.id, selectedFiles).then(() => {
+          history.push(`/device_details/${device_id}`);
+        });
+      });
+    } else {
+      setMessage("Añada almenos una observacion");
+    }
   };
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    setSelectedFiles([...selectedFiles, file]);
+    if (file) setSelectedFiles([...selectedFiles, file]);
   };
 
   const removeFile = (file) => {
@@ -154,7 +163,9 @@ const SaveFormat = () => {
 
           <div className="is-flex is-flex-centered mt-4 is-flex-direction-column">
             <button
-              className="button is-outlined is-success"
+              className={`button is-outlined is-success ${
+                loading && "is-loading"
+              }`}
               onClick={handleRegister}
               disabled={selectedFiles == 0}
             >
@@ -163,6 +174,7 @@ const SaveFormat = () => {
             {selectedFiles == 0 && (
               <p className="help">Añada almenos una imagen</p>
             )}
+            <p className="help">{message}</p>
           </div>
         </div>
         <div className="column"></div>
