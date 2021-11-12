@@ -19,7 +19,7 @@ const App = () => {
       <StoreProvider store={store}>
         <div className="m-0">
           <TopNavigator />
-          <div className="columns mt-4 ml-4 mr-4 full-width">
+          <div className="columns p-4 full-width m-0">
             <Switcher />
           </div>
           <Footer />
