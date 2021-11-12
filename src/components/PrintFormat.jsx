@@ -2,7 +2,7 @@ import { useStoreState } from "easy-peasy";
 import { useParams } from "react-router";
 import { toDate } from "../js/helpers";
 import html2pdf from "html2pdf.js";
-import logo from "../assets/logo.jpeg";
+import logo from "../assets/new_logo.jpeg";
 
 const PrintFormat = () => {
   const { device_id } = useParams();
@@ -14,6 +14,10 @@ const PrintFormat = () => {
   const user = useStoreState((state) => state.user);
   const maintainer = maintainers.find((m) => m.id == user.id);
   const deviceType = deviceTypes.find((x) => x.id == device.device_type_id);
+  const areas = useStoreState((state) => state.areas);
+  const facilities = useStoreState((state) => state.facilities);
+  const area = areas.find((x) => x.id == device.area_id);
+  const facility = facilities.find((x) => x.id == area.facility_id);
 
   const formatCode = () => {
     const maintenancesCount = maintenances.filter(
@@ -90,12 +94,13 @@ const PrintFormat = () => {
                   borderLeft: "0px solid #000000",
                   borderRight: "0px solid #000000",
                   backgroundImage: `url(${logo})`,
-                  backgroundSize: "75% 100%",
+                  backgroundSize: "100% 110%",
                   backgroundRepeat: "no-repeat",
                   backgroundPosition: "center",
+                  backgroundPositionY: "-5px",
                 }}
                 colSpan={3}
-                rowSpan={4}
+                rowSpan={5}
                 height={55}
                 align="center"
                 valign="middle"
@@ -103,7 +108,7 @@ const PrintFormat = () => {
               <td colSpan={5} align="center" valign="bottom">
                 <b>
                   <font color="#000000">
-                    REPORTE DE SERVICIO DE MANTENIMIENTO
+                    REPORTE DE SERVICIO DE MANTENIMIENTO (RSM)
                   </font>
                 </b>
               </td>
@@ -365,9 +370,9 @@ const PrintFormat = () => {
                 valign="bottom"
                 contenteditable="true"
               >
-                <font color="#000000">
-                  <br />
-                </font>
+                <b>
+                  <font color="#000000">{facility.name.toUpperCase()}</font>
+                </b>
               </td>
             </tr>
             <tr>
@@ -402,7 +407,7 @@ const PrintFormat = () => {
               >
                 <b>
                   <font color="#000000">
-                    <br />
+                    SOLUCIONES BIOMEDICAS PERUANAS S.R.L.
                   </font>
                 </b>
               </td>
@@ -438,9 +443,7 @@ const PrintFormat = () => {
                 contenteditable="true"
               >
                 <b>
-                  <font color="#000000">
-                    <br />
-                  </font>
+                  <font color="#000000">{area.name.toUpperCase()}</font>
                 </b>
               </td>
             </tr>
@@ -475,9 +478,7 @@ const PrintFormat = () => {
                 contenteditable="true"
               >
                 <b>
-                  <font color="#000000">
-                    <br />
-                  </font>
+                  <font color="#000000">{area.location}</font>
                 </b>
               </td>
             </tr>
@@ -1352,7 +1353,7 @@ const PrintFormat = () => {
                 colSpan={3}
                 height={26}
                 align="center"
-                valign="middle"
+                valign="bottom"
                 bgcolor="#E7E6E6"
               >
                 <b>
@@ -1664,6 +1665,28 @@ const PrintFormat = () => {
                 <font color="#000000">
                   <br />
                 </font>
+              </td>
+            </tr>
+
+            <tr>
+              <td
+                style={{
+                  borderTop: "1px solid #000000",
+                  borderBottom: "1px solid #000000",
+                  borderLeft: "1px solid #000000",
+                  borderRight: "1px solid #000000",
+                }}
+                colSpan={10}
+                height={12}
+                align="center"
+                valign="bottom"
+                bgcolor="#D0CECE"
+              >
+                <b>
+                  <font color="#000000">
+                    REPUESTOS Y/O ACCESORIOS UTILIZADOS
+                  </font>
+                </b>
               </td>
             </tr>
             <tr>
@@ -2630,7 +2653,7 @@ const PrintFormat = () => {
                 bgcolor="#D0CECE"
               >
                 <font size={1} color="#000000">
-                  Visto bueno del cliente
+                  Firma y sello del area usuaria
                 </font>
               </td>
             </tr>

@@ -1,7 +1,7 @@
 import { useStoreActions, useStoreState } from "easy-peasy";
 import { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router";
-import logo from "../assets/logo.jpeg";
+import logo from "../assets/new_logo.jpeg";
 import { getUsers } from "../js/api";
 
 const Login = () => {
@@ -44,7 +44,7 @@ const Login = () => {
     <div className="column is-flex is-flex-centered mt-4 contain_login ">
       <div className="card login">
         <div className="card-image">
-          <figure className="image is-5by3 rounded">
+          <figure className="image is-4by3 rounded">
             <img src={logo} className="p-4" />
           </figure>
         </div>

@@ -218,11 +218,11 @@ input[type="range"]::-webkit-slider-thumb {
   width: 90%;
 }
 
-body::-webkit-scrollbar,
+/* body::-webkit-scrollbar,
 .content::-webkit-scrollbar,
 .menu::-webkit-scrollbar {
   display: none;
-}
+} */
 
 body,
 .footer {
@@ -306,11 +306,11 @@ body,
 }
 
 .contain_login {
-  min-height: 70vh;
+  min-height: 80vh;
 }
 
 .contain {
-  min-height: 62vh;
+  min-height: 72vh;
 }
 
 .login {
@@ -325,4 +325,9 @@ body,
 .remove-img {
   position: relative;
   bottom: 1em;
+}
+
+footer {
+  position: sticky;
+  bottom: 0;
 }

@@ -17,14 +17,14 @@ const Footer = () => {
           <FontAwesomeIcon icon={faWhatsapp} size="2x" />
         </a>
         <a
-          href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=sbperuanas@gmail.com?subject=Mensage%20desde%web"
+          href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=sbperuanas@gmail.com"
           target="_blank"
           className="ml-4 mr-4"
         >
           <FontAwesomeIcon icon={faEnvelope} size="2x" />
         </a>
         <p>
-          <strong>Soluciones Biomedicas Peruanas </strong>
+          <strong>Soluciones Biomedicas Peruanas S.R.L. </strong>
           <br />
           <span>
             Telefonos: 971776607, 984013138; E-mail: sbperuanas@gmail.com,
