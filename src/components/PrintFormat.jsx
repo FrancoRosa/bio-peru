@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import { toDate } from "../js/helpers";
 import html2pdf from "html2pdf.js";
 import logo from "../assets/new_logo.jpeg";
+import { useState } from "react";
 
 const PrintFormat = () => {
   const { device_id } = useParams();
@@ -18,6 +19,7 @@ const PrintFormat = () => {
   const facilities = useStoreState((state) => state.facilities);
   const area = areas.find((x) => x.id == device.area_id);
   const facility = facilities.find((x) => x.id == area.facility_id);
+  const editable = user.user_type == "maintainer";
 
   const formatCode = () => {
     const maintenancesCount = maintenances.filter(
@@ -368,7 +370,7 @@ const PrintFormat = () => {
                 colSpan={7}
                 align="center"
                 valign="bottom"
-                contenteditable="true"
+                contentEditable={editable}
               >
                 <b>
                   <font color="#000000">{facility.name.toUpperCase()}</font>
@@ -403,7 +405,7 @@ const PrintFormat = () => {
                 colSpan={7}
                 align="center"
                 valign="bottom"
-                contenteditable="true"
+                contentEditable={editable}
               >
                 <b>
                   <font color="#000000">
@@ -440,7 +442,7 @@ const PrintFormat = () => {
                 colSpan={7}
                 align="center"
                 valign="bottom"
-                contenteditable="true"
+                contentEditable={editable}
               >
                 <b>
                   <font color="#000000">{area.name.toUpperCase()}</font>
@@ -475,7 +477,7 @@ const PrintFormat = () => {
                 colSpan={7}
                 align="center"
                 valign="bottom"
-                contenteditable="true"
+                contentEditable={editable}
               >
                 <b>
                   <font color="#000000">{area.location}</font>
@@ -914,7 +916,7 @@ const PrintFormat = () => {
                 height={37}
                 align="center"
                 valign="middle"
-                contentEditable
+                contentEditable={editable}
               >
                 <font color="#000000">
                   <br />
@@ -935,7 +937,7 @@ const PrintFormat = () => {
                 colSpan={3}
                 align="center"
                 valign="bottom"
-                contentEditable
+                contentEditable={editable}
               >
                 <font color="#000000">
                   <br />
@@ -1052,7 +1054,7 @@ const PrintFormat = () => {
                 height={37}
                 align="center"
                 valign="middle"
-                contentEditable
+                contentEditable={editable}
               >
                 <font color="#000000">
                   <br />
@@ -1164,7 +1166,7 @@ const PrintFormat = () => {
                 colSpan={7}
                 align="center"
                 valign="middle"
-                contentEditable
+                contentEditable={editable}
               >
                 <font color="#000000">
                   <br />
@@ -1283,7 +1285,7 @@ const PrintFormat = () => {
                   colSpan={9}
                   align="left"
                   valign="bottom"
-                  contentEditable
+                  contentEditable={editable}
                 >
                   <font color="#000000">{action}</font>
                 </td>
@@ -1370,7 +1372,7 @@ const PrintFormat = () => {
                 colSpan={2}
                 align="center"
                 valign="middle"
-                contentEditable
+                contentEditable={editable}
               >
                 <font color="#000000">
                   <br />
@@ -1408,7 +1410,7 @@ const PrintFormat = () => {
                 colSpan={1}
                 align="center"
                 valign="middle"
-                contentEditable
+                contentEditable={editable}
               >
                 <font color="#000000">
                   <br />
@@ -1441,7 +1443,7 @@ const PrintFormat = () => {
                 }}
                 align="center"
                 valign="bottom"
-                contentEditable
+                contentEditable={editable}
               >
                 <font color="#000000">
                   <br />
@@ -1511,7 +1513,7 @@ const PrintFormat = () => {
                 }}
                 align="center"
                 valign="bottom"
-                contentEditable
+                contentEditable={editable}
               >
                 <font color="#000000">
                   <br />
@@ -1598,7 +1600,7 @@ const PrintFormat = () => {
                 }}
                 align="center"
                 valign="bottom"
-                contentEditable
+                contentEditable={editable}
               >
                 <font color="#000000">
                   <br />
@@ -1634,7 +1636,7 @@ const PrintFormat = () => {
                 colSpan={2}
                 align="center"
                 valign="middle"
-                contentEditable
+                contentEditable={editable}
               >
                 <font color="#000000">
                   <br />
@@ -1847,7 +1849,7 @@ const PrintFormat = () => {
                 height={18}
                 align="center"
                 valign="bottom"
-                contentEditable
+                contentEditable={editable}
               >
                 <b>
                   <font color="#000000">
@@ -1865,7 +1867,7 @@ const PrintFormat = () => {
                 colSpan={2}
                 align="center"
                 valign="bottom"
-                contentEditable
+                contentEditable={editable}
               >
                 <font color="#000000">
                   <br />
@@ -1881,7 +1883,7 @@ const PrintFormat = () => {
                 colSpan={3}
                 align="center"
                 valign="middle"
-                contentEditable
+                contentEditable={editable}
               >
                 <font color="#000000">
                   <br />
@@ -1896,7 +1898,7 @@ const PrintFormat = () => {
                 }}
                 align="center"
                 valign="bottom"
-                contentEditable
+                contentEditable={editable}
               >
                 <font color="#000000">
                   <br />
@@ -1911,7 +1913,7 @@ const PrintFormat = () => {
                 }}
                 align="center"
                 valign="bottom"
-                contentEditable
+                contentEditable={editable}
               >
                 <font color="#000000">
                   <br />
@@ -1926,7 +1928,7 @@ const PrintFormat = () => {
                 }}
                 align="center"
                 valign="bottom"
-                contentEditable
+                contentEditable={editable}
               >
                 <font color="#000000">
                   <br />
@@ -1941,7 +1943,7 @@ const PrintFormat = () => {
                 }}
                 align="left"
                 valign="bottom"
-                contentEditable
+                contentEditable={editable}
               >
                 <font color="#000000">
                   <br />
@@ -1959,7 +1961,7 @@ const PrintFormat = () => {
                 height={18}
                 align="center"
                 valign="bottom"
-                contentEditable
+                contentEditable={editable}
               >
                 <b>
                   <font color="#000000">
@@ -1977,7 +1979,7 @@ const PrintFormat = () => {
                 colSpan={2}
                 align="center"
                 valign="bottom"
-                contentEditable
+                contentEditable={editable}
               >
                 <font color="#000000">
                   <br />
@@ -1993,7 +1995,7 @@ const PrintFormat = () => {
                 colSpan={3}
                 align="center"
                 valign="middle"
-                contentEditable
+                contentEditable={editable}
               >
                 <font color="#000000">
                   <br />
@@ -2008,7 +2010,7 @@ const PrintFormat = () => {
                 }}
                 align="center"
                 valign="bottom"
-                contentEditable
+                contentEditable={editable}
               >
                 <font color="#000000">
                   <br />
@@ -2023,7 +2025,7 @@ const PrintFormat = () => {
                 }}
                 align="center"
                 valign="bottom"
-                contentEditable
+                contentEditable={editable}
               >
                 <font color="#000000">
                   <br />
@@ -2038,7 +2040,7 @@ const PrintFormat = () => {
                 }}
                 align="center"
                 valign="bottom"
-                contentEditable
+                contentEditable={editable}
               >
                 <font color="#000000">
                   <br />
@@ -2053,7 +2055,7 @@ const PrintFormat = () => {
                 }}
                 align="left"
                 valign="bottom"
-                contentEditable
+                contentEditable={editable}
               >
                 <font color="#000000">
                   <br />
@@ -2071,7 +2073,7 @@ const PrintFormat = () => {
                 height={18}
                 align="center"
                 valign="bottom"
-                contentEditable
+                contentEditable={editable}
               >
                 <b>
                   <font color="#000000">
@@ -2089,7 +2091,7 @@ const PrintFormat = () => {
                 colSpan={2}
                 align="center"
                 valign="bottom"
-                contentEditable
+                contentEditable={editable}
               >
                 <font color="#000000">
                   <br />
@@ -2105,7 +2107,7 @@ const PrintFormat = () => {
                 colSpan={3}
                 align="center"
                 valign="middle"
-                contentEditable
+                contentEditable={editable}
               >
                 <font color="#000000">
                   <br />
@@ -2120,7 +2122,7 @@ const PrintFormat = () => {
                 }}
                 align="center"
                 valign="bottom"
-                contentEditable
+                contentEditable={editable}
               >
                 <font color="#000000">
                   <br />
@@ -2135,7 +2137,7 @@ const PrintFormat = () => {
                 }}
                 align="center"
                 valign="bottom"
-                contentEditable
+                contentEditable={editable}
               >
                 <font color="#000000">
                   <br />
@@ -2150,7 +2152,7 @@ const PrintFormat = () => {
                 }}
                 align="center"
                 valign="bottom"
-                contentEditable
+                contentEditable={editable}
               >
                 <font color="#000000">
                   <br />
@@ -2165,7 +2167,7 @@ const PrintFormat = () => {
                 }}
                 align="left"
                 valign="bottom"
-                contentEditable
+                contentEditable={editable}
               >
                 <font color="#000000">
                   <br />
@@ -2232,7 +2234,7 @@ const PrintFormat = () => {
                 }}
                 align="center"
                 valign="bottom"
-                contentEditable
+                contentEditable={editable}
               >
                 <font color="#000000">
                   <br />
@@ -2247,7 +2249,7 @@ const PrintFormat = () => {
                 }}
                 align="left"
                 valign="bottom"
-                contentEditable
+                contentEditable={editable}
               >
                 <font color="#000000">
                   <br />
@@ -2349,7 +2351,7 @@ const PrintFormat = () => {
                 height={18}
                 align="center"
                 valign="bottom"
-                contentEditable
+                contentEditable={editable}
               >
                 <font color="#000000">{maintainer?.name}</font>
               </td>
@@ -2363,7 +2365,7 @@ const PrintFormat = () => {
                 colSpan={2}
                 align="center"
                 valign="bottom"
-                contentEditable
+                contentEditable={editable}
               >
                 <font color="#000000">{maintainer?.dni}</font>
               </td>
@@ -2450,7 +2452,7 @@ const PrintFormat = () => {
                 height={50}
                 align="center"
                 valign="bottom"
-                contentEditable
+                contentEditable={editable}
               >
                 <font color="#000000">
                   <br />
