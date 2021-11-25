@@ -555,39 +555,7 @@ const PrintFormat = () => {
                   <font color="#000000">{deviceType.name}</font>
                 </b>
               </td>
-              <td align="left" valign="bottom">
-                <font color="#000000">
-                  <br />
-                </font>
-              </td>
-              <td align="left" valign="bottom">
-                <font color="#000000">
-                  <br />
-                </font>
-              </td>
-              <td align="left" valign="bottom">
-                <font color="#000000">
-                  <br />
-                </font>
-              </td>
-              <td align="left" valign="bottom">
-                <font color="#000000">
-                  <br />
-                </font>
-              </td>
-              <td align="left" valign="bottom">
-                <font color="#000000">
-                  <br />
-                </font>
-              </td>
-              <td align="left" valign="bottom">
-                <font color="#000000">
-                  <br />
-                </font>
-              </td>
-            </tr>
-            <tr>
-              <td colSpan={3} height={18} align="left" valign="middle">
+              <td colSpan={1} height={18} align="left" valign="middle">
                 <b>
                   <font color="#000000">Denominacion especifica:</font>
                 </b>
@@ -597,37 +565,8 @@ const PrintFormat = () => {
                   <font color="#000000">{device.name}</font>
                 </b>
               </td>
-              <td align="left" valign="bottom">
-                <font color="#000000">
-                  <br />
-                </font>
-              </td>
-              <td align="left" valign="bottom">
-                <font color="#000000">
-                  <br />
-                </font>
-              </td>
-              <td align="left" valign="bottom">
-                <font color="#000000">
-                  <br />
-                </font>
-              </td>
-              <td align="left" valign="bottom">
-                <font color="#000000">
-                  <br />
-                </font>
-              </td>
-              <td align="left" valign="bottom">
-                <font color="#000000">
-                  <br />
-                </font>
-              </td>
-              <td align="left" valign="bottom">
-                <font color="#000000">
-                  <br />
-                </font>
-              </td>
             </tr>
+
             <tr>
               <td colSpan={3} height={18} align="left" valign="bottom">
                 <b>
@@ -689,7 +628,7 @@ const PrintFormat = () => {
                   <br />
                 </font>
               </td>
-              <td colSpan={2} align="left" valign="bottom">
+              <td colSpan={1} align="left" valign="bottom">
                 <b>
                   <font color="#000000">Tipo de equipamiento:</font>
                 </b>
@@ -704,7 +643,7 @@ const PrintFormat = () => {
               </td>
             </tr>
             <tr>
-              <td colSpan={3} height={18} align="left" valign="middle">
+              <td colSpan={2} height={18} align="left" valign="bottom">
                 <b>
                   <font color="#000000">Tipo de mantenimiento:</font>
                 </b>
@@ -714,7 +653,12 @@ const PrintFormat = () => {
                   <br />
                 </font>
               </td>
-              <td align="left" valign="bottom">
+              <td
+                colSpan={2}
+                align="left"
+                valign="middle"
+                contentEditable={editable}
+              >
                 <font color="#000000">
                   <br />
                 </font>
@@ -724,84 +668,17 @@ const PrintFormat = () => {
                   <br />
                 </font>
               </td>
-              <td align="left" valign="bottom">
-                <b>
-                  <font color="#000000">
-                    <br />
-                  </font>
-                </b>
-              </td>
-              <td align="left" valign="bottom">
-                <b>
-                  <font color="#000000">
-                    <br />
-                  </font>
-                </b>
-              </td>
-              <td align="left" valign="bottom">
-                <font color="#000000">
-                  <br />
-                </font>
-              </td>
-              <td align="left" valign="bottom">
-                <font color="#000000">
-                  <br />
-                </font>
-              </td>
-            </tr>
-            <tr>
-              <td height={18} align="left" valign="bottom">
+              <td colSpan={1} align="left" valign="bottom">
                 <b>
                   <font color="#000000">Prioridad:</font>
                 </b>
               </td>
-              <td align="left" valign="bottom">
-                <b>
-                  <font color="#000000">
-                    <br />
-                  </font>
-                </b>
-              </td>
-              <td align="left" valign="bottom">
-                <font color="#000000">
-                  <br />
-                </font>
-              </td>
-              <td align="left" valign="bottom">
-                <font color="#000000">
-                  <br />
-                </font>
-              </td>
-              <td align="left" valign="bottom">
-                <font color="#000000">
-                  <br />
-                </font>
-              </td>
-              <td align="left" valign="bottom">
-                <font color="#000000">
-                  <br />
-                </font>
-              </td>
-              <td align="left" valign="bottom">
-                <b>
-                  <font color="#000000">
-                    <br />
-                  </font>
-                </b>
-              </td>
-              <td align="left" valign="bottom">
-                <b>
-                  <font color="#000000">
-                    <br />
-                  </font>
-                </b>
-              </td>
-              <td align="left" valign="bottom">
-                <font color="#000000">
-                  <br />
-                </font>
-              </td>
-              <td align="left" valign="bottom">
+              <td
+                colSpan={3}
+                align="left"
+                valign="bottom"
+                contentEditable={editable}
+              >
                 <font color="#000000">
                   <br />
                 </font>
