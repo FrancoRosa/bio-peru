@@ -797,21 +797,18 @@ const PrintFormat = () => {
                   <br />
                 </font>
               </td>
-              <td align="left" valign="bottom">
-                <font color="#000000">
-                  <br />
-                </font>
-              </td>
-              <td align="left" valign="bottom">
-                <font color="#000000">
-                  <br />
-                </font>
-              </td>
-              <td align="left" valign="bottom">
-                <font color="#000000">
-                  <br />
-                </font>
-              </td>
+              <td
+                style={{
+                  borderTop: "1px solid #000000",
+                  borderBottom: "1px solid #000000",
+                  borderLeft: "1px solid #000000",
+                  borderRight: "1px solid #000000",
+                }}
+                colSpan={3}
+                rowSpan={4}
+                align="center"
+                valign="bottom"
+              ></td>
             </tr>
             <tr>
               <td height={18} align="left" valign="bottom">
@@ -849,18 +846,7 @@ const PrintFormat = () => {
                   <br />
                 </font>
               </td>
-              <td
-                style={{
-                  borderTop: "1px solid #000000",
-                  borderBottom: "1px solid #000000",
-                  borderLeft: "1px solid #000000",
-                  borderRight: "1px solid #000000",
-                }}
-                colSpan={3}
-                rowSpan={3}
-                align="center"
-                valign="bottom"
-              >
+              <td>
                 <font color="#000000">
                   <br />
                 </font>
