@@ -1,3 +1,8 @@
+export const thisDate = () => {
+  const time = new Date();
+  return time.toLocaleString("sv-SE").split(" ")[0];
+};
+
 export const toDateTime = (timestamp) => {
   const time = new Date(timestamp);
   return time.toLocaleString("sv-SE");

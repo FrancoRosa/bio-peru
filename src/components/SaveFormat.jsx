@@ -5,6 +5,7 @@ import { saveMaintenance } from "../js/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import { uploadFiles } from "../js/firebase";
+import { thisDate } from "../js/helpers";
 
 const SaveFormat = () => {
   const user = useStoreState((state) => state.user);
@@ -13,6 +14,7 @@ const SaveFormat = () => {
     (actions) => actions.updateDeviceMaintenance
   );
   const [inputMainType, setInputMainType] = useState("Preventivo");
+  const [maintenanceDate, setMaintenanceDate] = useState(thisDate());
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
@@ -36,6 +38,7 @@ const SaveFormat = () => {
       activities: inputActivities.current.value,
       maintainer_id: user.maintainer_id,
       device_id,
+      created_at: maintenanceDate,
     };
     if (params.observations != "") {
       setLoading(true);
@@ -69,6 +72,17 @@ const SaveFormat = () => {
       <div className="columns">
         <div className="column"></div>
         <div className="column is-half">
+          <div className="field is-flex is-justify-content-space-between">
+            <label className="label">Fecha de mantenimiento:</label>
+            <input
+              className="input"
+              type="date"
+              value={maintenanceDate}
+              onChange={(e) => setMaintenanceDate(e.target.value)}
+              style={{ width: "15em" }}
+            />
+          </div>
+          <hr />
           <div>
             <div className="field">
               <label className="label">Observaciones</label>
@@ -127,6 +141,7 @@ const SaveFormat = () => {
                 />
               </div>
             </div>
+
             <div className="columns">
               {selectedFiles.map((f) => (
                 <div className="column is-flex is-flex-centered is-flex-direction-column mb-4">
