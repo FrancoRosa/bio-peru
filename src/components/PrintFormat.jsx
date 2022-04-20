@@ -1,29 +1,30 @@
 import { useStoreState } from "easy-peasy";
 import { useParams } from "react-router";
 import { toDate } from "../js/helpers";
-import html2pdf from "html2pdf.js";
 import logo from "../assets/new_logo.jpeg";
-import { useState } from "react";
+import { useEffect } from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const PrintFormat = () => {
   const { device_id } = useParams();
+  const history = useHistory();
   const devices = useStoreState((state) => state.devices);
-  const device = devices.find((x) => x.id == device_id);
+  const device = devices.find((x) => x.id === parseInt(device_id));
   const deviceTypes = useStoreState((state) => state.deviceTypes);
   const maintenances = useStoreState((state) => state.maintenances);
   const maintainers = useStoreState((state) => state.maintainers);
   const user = useStoreState((state) => state.user);
-  const maintainer = maintainers.find((m) => m.id == user.id);
-  const deviceType = deviceTypes.find((x) => x.id == device.device_type_id);
+  const maintainer = maintainers.find((m) => m.id === user.id);
+  const deviceType = deviceTypes.find((x) => x.id === device.device_type_id);
   const areas = useStoreState((state) => state.areas);
   const facilities = useStoreState((state) => state.facilities);
-  const area = areas.find((x) => x.id == device.area_id);
-  const facility = facilities.find((x) => x.id == area.facility_id);
-  const editable = user.user_type == "maintainer";
+  const area = areas.find((x) => x.id === device.area_id);
+  const facility = facilities.find((x) => x.id === area.facility_id);
+  const editable = user.user_type === "maintainer";
 
   const formatCode = () => {
     const maintenancesCount = maintenances.filter(
-      (x) => x.device_id == device.id
+      (x) => x.device_id === parseInt(device.id)
     ).length;
     return (
       String(device.id).padStart(4, "0") +
@@ -44,38 +45,39 @@ const PrintFormat = () => {
     return actions;
   };
 
-  const downloadPDF = () => {
-    const pdf_content = document.querySelector("#pdf_format");
-    html2pdf()
-      .set({
-        margin: [0.1, 0.1],
-        filename: "biomedicas - " + formatCode(),
-        html2canvas: {
-          scale: 1,
-          letterRendering: true,
-        },
-        image: { type: "jpeg", quality: 1 },
-        jsPDF: {
-          unit: "in",
-          format: "a4",
-          orientation: "portrait",
-        },
-      })
-      .from(pdf_content)
-      .save()
-      .catch((err) => console.log(err));
-  };
+  useEffect(() => {
+    document.title = "biomedicas - " + formatCode();
+  }, []);
 
   return (
-    <div className="column transparency">
-      <h1 className="title is-3 mt-4">Formato imprimible</h1>
-      <hr />
-      <div className="mt-4 is-flex is-flex-centered is-flex-direction-column ">
+    <div
+      className="column is-flex-centered is-flex is-flex-direction-column"
+      style={{ backgroundColor: "white", margin: "-1em -2em" }}
+    >
+      <div className="is-flex no-print">
+        <button
+          className="button m-4 is-outlined no-print"
+          onClick={() => history.goBack()}
+        >
+          Regresar
+        </button>
+        <button
+          className="button m-4 is-success is-outlined no-print"
+          onClick={() => window.print()}
+        >
+          Imprimir
+        </button>
+      </div>
+      <hr
+        className="no-print"
+        style={{ border: "1px solid grey", width: "100vw", margin: "0.5em 0" }}
+      />
+      <div className="m-4 is-flex is-flex-centered is-flex-direction-column">
         <style
           type="text/css"
           dangerouslySetInnerHTML={{
             __html:
-              '\n\t\tbody,div,table,thead,tbody,tfoot,tr,th,td,p { \n\t\t\tfont-family:"Calibri";\n\t\t\tfont-size:x-small;\n\t\t}\n\t\t.empty {\n\t\t\tline-height: 0.5;\n\t\t}\n\t\t.l1 {\n\t\t\tline-height: 1.5;\n\t\t}\n\n\t\ta.comment-indicator:hover + comment {\n\t\t\tbackground:#ffd;\n\t\t\tposition:absolute;\n\t\t\tdisplay:block;\n\t\t\tborder:1px solid black;\n\t\t\tpadding:0.5em;\n\t\t} \n\t\ta.comment-indicator { \n\t\t\tbackground:red;\n\t\t\tdisplay:inline-block;\n\t\t\tborder:1px solid black;\n\t\t\twidth:0.5em;\n\t\t\theight:0.5em;\n\t\t} \n\t\tcomment { display:none;  } \n\t',
+              '\n\t\tbody,div,table,thead,tbody,tfoot,tr,th,td,p { \n\t\t\tfont-family:"Calibri";\n\t\t\tfont-size:small;\n\t\t}\n\t\t.empty {\n\t\t\tline-height: 0.5;\n\t\t}\n\t\t.l1 {\n\t\t\tline-height: 1.5;\n\t\t}\n\n\t\ta.comment-indicator:hover + comment {\n\t\t\tbackground:#ffd;\n\t\t\tposition:absolute;\n\t\t\tdisplay:block;\n\t\t\tborder:1px solid black;\n\t\t\tpadding:0.5em;\n\t\t} \n\t\ta.comment-indicator { \n\t\t\tbackground:red;\n\t\t\tdisplay:inline-block;\n\t\t\tborder:1px solid black;\n\t\t\twidth:0.5em;\n\t\t\theight:0.5em;\n\t\t} \n\t\tcomment { display:none;  } \n\t',
           }}
         />
         <table cellSpacing={0} border={0} id="pdf_format">
@@ -89,7 +91,7 @@ const PrintFormat = () => {
           <colgroup width={122} />
           <tbody>
             <tr>
-              <td
+              {/* <td
                 style={{
                   borderTop: "0px solid #000000",
                   borderBottom: "0px solid #000000",
@@ -106,7 +108,16 @@ const PrintFormat = () => {
                 height={55}
                 align="center"
                 valign="middle"
-              ></td>
+              ></td> */}
+              <td
+                colSpan={3}
+                rowSpan={5}
+                height={55}
+                align="center"
+                valign="middle"
+              >
+                <img src={logo} style={{ maxWidth: "75%" }} />
+              </td>
               <td colSpan={5} align="center" valign="bottom">
                 <b>
                   <font color="#000000">
@@ -2534,12 +2545,22 @@ const PrintFormat = () => {
         </table>
         {/* ************************************************************************** */}
       </div>
-      <div className="is-flex is-flex-centered m-4">
+      <hr
+        className="no-print"
+        style={{ border: "1px solid grey", width: "100vw", margin: "0.5em 0" }}
+      />
+      <div className="is-flex no-print">
         <button
-          className="button mt-4 mb-4 is-outlined is-success"
-          onClick={downloadPDF}
+          className="button m-4 is-outlined no-print"
+          onClick={() => history.goBack()}
         >
-          Descargar
+          Regresar
+        </button>
+        <button
+          className="button m-4 is-success is-outlined no-print"
+          onClick={() => window.print()}
+        >
+          Imprimir
         </button>
       </div>
     </div>
